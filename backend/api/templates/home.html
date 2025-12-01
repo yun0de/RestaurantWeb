@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home — My Restaurant{% endblock %}
+
+{% block content %}
+<!-- HERO -->
+<section class="bg-hero-black text-white">
+  <div class="max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+    <div class="order-1 lg:order-1">
+      <h1 class="text-5xl font-serif-display leading-tight mb-6" style="color:var(--asian-red)">
+        Experience the Taste of Asia
+      </h1>
+      <p class="text-lg text-white/80 mb-6">Savor our authentic dishes crafted with fresh ingredients and traditional recipes.</p>
+      <a href="#menu" class="inline-block bg-asian-red text-white px-6 py-3 rounded-md shadow">Go to Menu</a>
+    </div>
+
+    <div class="order-2 lg:order-2 flex justify-center">
+      {% if restaurants and restaurants.0.cover_image %}
+        <img src="{{ restaurants.0.cover_image.url }}" alt="hero image" class="w-full max-w-md object-cover rounded-lg shadow-lg">
+      {% else %}
+        <img src="{% static 'img/placeholder-hero.jpg' %}" alt="hero image" class="w-full max-w-md object-cover rounded-lg shadow-lg">
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="bg-page-beige">
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="text-3xl text-center mb-10 font-serif-display" style="color:var(--asian-red)">Our Core Values</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+      <div class="p-6">
+        <!-- simple icon placeholder -->
+        <div class="text-4xl mb-3" style="color:var(--asian-red)">🍜</div>
+        <h3 class="text-xl font-semibold" style="color:var(--asian-red)">Authentic Recipes</h3>
+        <p class="mt-2 text-sm text-gray-700">Traditional recipes that capture the true essence of Asian cuisine.</p>
+      </div>
+
+      <div class="p-6">
+        <div class="text-4xl mb-3" style="color:var(--asian-red)">🌿</div>
+        <h3 class="text-xl font-semibold" style="color:var(--asian-red)">Fresh Ingredients</h3>
+        <p class="mt-2 text-sm text-gray-700">Sourced locally and chosen for quality and flavor.</p>
+      </div>
+
+      <div class="p-6">
+        <div class="text-4xl mb-3" style="color:var(--asian-red)">⚡</div>
+        <h3 class="text-xl font-semibold" style="color:var(--asian-red)">Fast Service</h3>
+        <p class="mt-2 text-sm text-gray-700">Quick and attentive service for a seamless experience.</p>
+      </div>
+
+      <div class="p-6">
+        <div class="text-4xl mb-3" style="color:var(--asian-red)">🤝</div>
+        <h3 class="text-xl font-semibold" style="color:var(--asian-red)">Friendly Atmosphere</h3>
+        <p class="mt-2 text-sm text-gray-700">Warm, welcoming space where guests feel like family.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDERS -->
+<section id="founders" class="bg-page-beige">
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <h2 class="text-3xl font-serif-display mb-6 text-center" style="color:var(--asian-red)">From the Founders</h2>
+    <div class="max-w-3xl mx-auto text-center text-lg text-gray-800">
+      <p class="mb-6">Welcome to our restaurant! We founded this place to share the culinary heritage of Asia with our community. We hope you enjoy every bite.</p>
+      <div class="flex justify-center gap-4">
+        <!-- founder avatars as placeholders -->
+        <img src="{% static 'img/founder-1.jpg' %}" alt="founder" class="w-16 h-16 rounded-full object-cover shadow">
+        <img src="{% static 'img/founder-2.jpg' %}" alt="founder" class="w-16 h-16 rounded-full object-cover shadow">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU PREVIEW -->
+<section id="menu" class="bg-page-beige">
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <h2 class="text-3xl font-serif-display mb-8 text-center" style="color:var(--asian-red)">Explore Our Menu</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {% for item in menu_items %}
+      <div class="bg-white rounded-lg shadow p-4">
+        {% if item.photo %}
+          <img src="{{ item.photo.url }}" alt="{{ item.name }}" class="w-full h-40 object-cover rounded">
+        {% else %}
+          <div class="w-full h-40 bg-gray-100 rounded"></div>
+        {% endif %}
+        <h3 class="mt-4 text-xl font-semibold">{{ item.name }}</h3>
+        <p class="text-sm text-gray-600 mt-1">{{ item.description|truncatechars:80 }}</p>
+        <div class="mt-3 text-right font-semibold">${{ item.price }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

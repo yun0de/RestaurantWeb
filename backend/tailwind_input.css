@@ -1,0 +1,11 @@
+/* tailwind_input.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* small custom styles */
+:root{
+  --asian-red: #b30000;
+  --page-beige: #f5eadf;
+  --hero-black: #0b0b0b;
+}

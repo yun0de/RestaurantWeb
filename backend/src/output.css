@@ -1,0 +1,9 @@
+/*! tailwindcss v4.1.17 | MIT License | https://tailwindcss.com */
+.static {
+  position: static;
+}
+:root {
+  --asian-red: #b30000;
+  --page-beige: #f5eadf;
+  --hero-black: #0b0b0b;
+}

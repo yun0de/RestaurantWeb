@@ -1,0 +1,33 @@
+<!-- backend/api/templates/base.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block title %}My Restaurant{% endblock %}</title>
+
+  {% load static %}
+  <!-- compiled Tailwind CSS -->
+  <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+</head>
+<body class="bg-page-beige text-gray-800">
+  <nav class="bg-hero-black text-white">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="text-xl font-bold" style="color:var(--asian-red)">{% block site_name %}My Restaurant{% endblock %}</div>
+      <div>
+        <a href="#menu" class="px-3">Menu</a>
+        <a href="#founders" class="px-3">Founders</a>
+        <a href="/admin" class="px-3">Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="text-center py-6 text-sm text-gray-600">
+    © {% now "Y" %} My Restaurant
+  </footer>
+</body>
+</html>
