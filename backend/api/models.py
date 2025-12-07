@@ -21,6 +21,7 @@ class MenuItem(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     photo = models.ImageField(upload_to='menu_items/', null=True, blank=True)
     def __str__(self): return self.name
+    def formatted_price(self): return f"{self.price} Kč"
 
 class Reservation(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)

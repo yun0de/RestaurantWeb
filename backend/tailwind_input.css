@@ -1,11 +1,42 @@
-/* tailwind_input.css */
+/* import display + body fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* small custom styles */
+/* Custom tokens to mirror the mockup */
 :root{
-  --asian-red: #b30000;
+  --asian-red: #B11E1E;
   --page-beige: #f5eadf;
   --hero-black: #0b0b0b;
+}
+
+/* Base typography */
+html { font-family: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+.font-display { font-family: "Playfair Display", Georgia, serif; }
+
+/* Hero heading sizing tuned to the mockup */
+.hero-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 64px;         /* desktop baseline */
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+/* bigger on large screens */
+@media (min-width: 1024px){
+  .hero-title { font-size: 88px; }
+}
+
+/* Values heading */
+.values-title { font-family: "Playfair Display", Georgia, serif; font-size: 36px; }
+
+/* founders quote style */
+.founder-quote { font-size: 20px; line-height: 1.65; font-style: normal; color: #3b3b3b; }
+
+/* utility for beige texture */
+.page-beige-bg {
+  background-color: var(--page-beige);
 }

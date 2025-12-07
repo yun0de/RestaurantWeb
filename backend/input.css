@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --asian-red: #b11e1e;
+  --page-beige: #f5eadf;
+  --hero-black: #0b0b0b;
+}
+
+/* small helper */
+.font-serif-display { font-family: Georgia, serif; }

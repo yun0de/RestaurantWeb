@@ -1,33 +1,49 @@
-<!-- backend/api/templates/base.html -->
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{% block title %}My Restaurant{% endblock %}</title>
+  <title>{% block title %}Asian Restaurant{% endblock %}</title>
 
-  {% load static %}
-  <!-- compiled Tailwind CSS -->
   <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+  {% comment %} <style>
+    :root {
+      --asian-red: #b30000;
+      --page-beige: #f5eadf;
+      --hero-black: #0b0b0b;
+    }
+  </style> {% endcomment %}
 </head>
-<body class="bg-page-beige text-gray-800">
-  <nav class="bg-hero-black text-white">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="text-xl font-bold" style="color:var(--asian-red)">{% block site_name %}My Restaurant{% endblock %}</div>
-      <div>
-        <a href="#menu" class="px-3">Menu</a>
-        <a href="#founders" class="px-3">Founders</a>
-        <a href="/admin" class="px-3">Admin</a>
-      </div>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+<body class="bg-page-beige text-gray-800 antialiased">
+
+  <!-- HEADER -->
+  <header class="bg-hero-black">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <img src="{% static 'img/logo.png' %}" alt="Asian Restaurant" class="h-8 w-auto">
+        <span class="hidden sm:inline font-display text-asian-red font-semibold">Asian Restaurant</span>
+      </a>
+      <nav class="text-white text-sm">
+        <a href="#menu" class="px-4 hover:underline">Menu</a>
+        <a href="#founders" class="px-4 hover:underline">Founders</a>
+        <a href="/admin" class="px-4 hover:underline">Admin</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
   <main>
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="text-center py-6 text-sm text-gray-600">
-    © {% now "Y" %} My Restaurant
+  <footer class="text-center py-8 text-sm text-gray-600">
+    © {% now "Y" %} Asian Restaurant
   </footer>
 </body>
 </html>

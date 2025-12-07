@@ -1,20 +1,28 @@
-// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './api/templates/**/*.html',
-    './api/**/*.py',
+    './api/templates/*.html',
+    './api/**/*.py'
   ],
   theme: {
     extend: {
       colors: {
-        'asian-red': '#b30000',   // traditional chinese red-ish
+        'asian-red': '##b22b23',
         'page-beige': '#f5eadf',
         'hero-black': '#0b0b0b'
       },
       fontFamily: {
-        'serif-display': ['Georgia', 'serif'],
-        'body': ['Inter', 'system-ui', 'sans-serif']
-      }
+        'display': ['Playfair Display','Georgia','serif'],
+        'body': ['Source Sans 3','system-ui','sans-serif']
+      },
+      boxShadow: {
+        'hero-lg': '0 30px 60px rgba(0,0,0,0.45)',
+      },
+      borderColor: theme => ({
+        ...theme('colors'),
+        'panel-divider': '#e9dcd3',
+      })
     },
   },
   plugins: [],
