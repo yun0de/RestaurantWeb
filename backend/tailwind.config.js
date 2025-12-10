@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'asian-red': '##b22b23',
+        'asian-red': '#b22b23',
         'page-beige': '#f5eadf',
         'hero-black': '#0b0b0b'
       },

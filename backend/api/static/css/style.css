@@ -234,3 +234,111 @@
   text-orientation: mixed !important;
   float: none !important;
 }
+
+/* Force perfect centering */
+#menuModal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fix animation transform so it starts centered */
+#modalPanel {
+  transform: translateY(0) scale(.98);
+}
+
+#modalPanel.show,
+#modalPanel[aria-hidden="false"] {
+  transform: translateY(0) scale(1);
+}
+
+/* Modal explicit transitions & sizing (REPLACEMENT) */
+#menuModal .backdrop-visible { opacity: 1; }
+
+#modalPanel {
+  transform-origin: center;
+  transform: translateY(-8px) scale(.98);
+  transition: transform .22s cubic-bezier(.2,.8,.2,1), opacity .22s ease;
+  opacity: 0;
+  will-change: transform, opacity;
+  box-shadow: 0 12px 40px rgba(2,6,23,0.2);
+}
+
+/* When JS opens the modal we set inline styles. This CSS is the fallback. */
+#modalPanel[aria-hidden="false"] {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* Big image sizing in modal */
+#modalImage { display:block; width:100%; height:auto; object-fit:cover; }
+
+/* Constrain modal content height and allow scrolling for long descriptions */
+#modalPanel > .p-6 { max-height: 80vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+/* Prevent background page scroll while modal open */
+.body-modal-open { overflow: hidden !important; }
+/* --- clickable image button reset (optional cleanup) --- */
+.menu-card__media button.modal-open {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* ensure the inner img fills the button area correctly */
+.menu-card__media button.modal-open img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Strong, always-right-positioned close button */
+.modal-close-btn {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+
+  width: 48px;
+  height: 48px;
+
+  background: white;
+  border-radius: 9999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #333;
+  cursor: pointer;
+
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  z-index: 9999;
+
+  border: 1px solid rgba(0,0,0,0.1);
+
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.modal-close-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+}
+
+.modal-close-btn svg {
+  pointer-events: none;
+}
+
+.founder-photo {
+  width: 220px;       /* circle size */
+  height: 220px;      /* MUST match width */
+  object-fit: cover;  /* crops center perfectly */
+  border-radius: 9999px;
+  border: 8px solid #f5eadf;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  background: #fff;
+}
