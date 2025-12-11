@@ -1,43 +1,4 @@
 /*! tailwindcss v4.1.17 | MIT License | https://tailwindcss.com qwesmmdime */
-footer {
-  background-color: #0b0b0b !important;   /* dark navy */
-  color: #ffffff !important;
-  background-image: none !important;
-  background: #0b0b0b !important;
-}
-/* Footer alignment overrides
-   Put this at the very end of style.css and then hard-refresh the page */
-@media (min-width: 768px) {
-  /* Middle 3-column footer: left = start, center = center, right = end */
-  footer .max-w-6xl .grid.md\:grid-cols-3 > div:nth-child(1) {
-    justify-self: start !important;
-    text-align: left !important;
-  }
-  footer .max-w-6xl .grid.md\:grid-cols-3 > div:nth-child(2) {
-    justify-self: center !important;
-    text-align: center !important;
-  }
-  footer .max-w-6xl .grid.md\:grid-cols-3 > div:nth-child(3) {
-    justify-self: end !important;
-    text-align: right !important;
-  }
-
-  /* Bottom bar (the grid with 3 columns) - ensure right column is flushed */
-  footer .border-t .max-w-6xl.grid.md\:grid-cols-3 > div:nth-child(3) {
-    justify-self: end !important;
-    text-align: right !important;
-  }
-}
-
-/* Mobile: keep everything centered (no change required, but explicit) */
-@media (max-width: 767px) {
-  footer .max-w-6xl .grid.md\:grid-cols-3 > div,
-  footer .border-t .max-w-6xl.grid.md\:grid-cols-3 > div {
-    justify-self: center !important;
-    text-align: center !important;
-  }
-}
-
 @layer properties;
 .absolute {
   position: absolute;
@@ -57,7 +18,9 @@ footer {
 .block {
   display: block;
 }
-
+.flex {
+  display: flex;
+}
 .grid {
   display: grid;
 }
@@ -70,7 +33,9 @@ footer {
 .min-h-\[540px\] {
   min-height: 540px;
 }
-
+.w-full {
+  width: 100%;
+}
 .flex-col {
   flex-direction: column;
 }
@@ -129,7 +94,6 @@ footer {
   --beige: #f2e8df;
   --cream: #f7efe7;
 }
-
 .btn-primary {
   display: inline-block;
   padding: 0.75rem 1.5rem;
@@ -271,7 +235,12 @@ footer {
   float: none !important;
 }
 
-
+/* Force perfect centering */
+#menuModal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* Fix animation transform so it starts centered */
 #modalPanel {

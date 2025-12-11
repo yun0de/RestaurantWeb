@@ -7,6 +7,7 @@
   <title>{% block title %}Asian Restaurant{% endblock %}</title>
 
   <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}">  <!-- ADD THIS --> {% endcomment %}
   {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
   {% comment %} <style>
@@ -44,8 +45,89 @@
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="text-center py-8 text-sm text-gray-600">
-    © {% now "Y" %} Asian Restaurant
-  </footer>
+<!-- BEGIN: Site footer -->
+<!-- Footer: left = hours, center = contact, right = map; top social centered; bottom copyright right -->
+<footer class="bg-black text-white">
+  <div class="max-w-6xl mx-auto px-6 py-16"> <!-- <-- use same max-width as your body -->
+
+    <!-- TOP: Social / headline (centered) -->
+    <div class="text-center mb-12">
+      <p class="text-sm">Find news & updates on our</p>
+      <p class="text-2xl font-semibold mt-2">Instagram and Facebook.</p>
+    </div>
+
+    <!-- MIDDLE: grid with explicit justify-self on children -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+
+      <!-- LEFT: Opening hours -->
+      <div class="order-2 md:order-1 justify-self-center md:justify-self-start flex flex-col items-center md:items-start text-center md:text-left">
+        <h3 class="font-semibold mb-3">Opening hours</h3>
+        <div class="text-sm space-y-1">
+          <div><span class="inline-block w-20 md:w-24">Mon – Fri</span><span>11:30 – 23:00</span></div>
+          <div><span class="inline-block w-20 md:w-24">Sat</span><span>12:00 – 23:00</span></div>
+          <div><span class="inline-block w-20 md:w-24">Sun</span><span>12:00 – 22:00</span></div>
+          <div><span class="inline-block w-20 md:w-24">Holidays</span><span>12:00 – 23:00</span></div>
+        </div>
+      </div>
+
+      <!-- CENTER: Address & contact (centered) -->
+      <div class="order-1 md:order-2 justify-self-center flex flex-col items-center text-center">
+        <h3 class="font-semibold mb-3">Contact</h3>
+
+        <p class="mb-2">Asian Restaurant</p>
+        <address class="not-italic mb-2 text-sm">
+          123 Example Street<br>
+          Cityname, ZIP 12345<br>
+          Country
+        </address>
+
+        <p class="text-sm"><a href="mailto:hello@example.com" class="underline">hello@example.com</a></p>
+        <p class="text-sm mb-3"><a href="tel:+420123456789" class="underline">+420 123 456 789</a></p>
+      </div>
+
+      <!-- RIGHT: Google Maps (right-aligned on desktop) -->
+      <div class="order-3 md:order-3 justify-self-center md:justify-self-end flex flex-col items-center md:items-end text-center md:text-right">
+        <h3 class="sr-only">Map</h3>
+        <div class="w-full max-w-xs md:max-w-sm rounded overflow-hidden border border-white/10">
+          <iframe
+            src="https://maps.google.com/maps?q=123%20Example%20Street%20Cityname&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+    </div> <!-- end middle grid -->
+
+  </div> <!-- end content container -->
+
+  <!-- BOTTOM bar: three columns so right column sits flush right -->
+  <div class="border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-6 py-6 grid grid-cols-1 md:grid-cols-3 items-center">
+
+      <!-- left: intentionally empty (keeps layout) -->
+      <div class="hidden md:block"></div>
+
+      <!-- center: show on mobile -->
+      <div class="md:hidden text-xs text-white/80 text-center py-2">
+        © {% now "Y" %} Asian Restaurant — All rights reserved.
+        <div><a href="/privacy" class="underline mr-3">Privacy</a><a href="/terms" class="underline">Terms</a></div>
+      </div>
+
+      <!-- right: desktop copyright and links (flush right) -->
+      <div class="justify-self-center md:justify-self-end flex flex-col md:flex-row md:items-center md:space-x-6 text-xs text-white/80">
+        <div class="hidden md:block">© {% now "Y" %} Asian Restaurant — All rights reserved.</div>
+        <div class="flex items-center space-x-4 mt-3 md:mt-0">
+          <a href="/privacy" class="underline">Privacy</a>
+          <a href="/terms" class="underline">Terms</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+
+
+<!-- END: Site footer -->
+
 </body>
 </html>
