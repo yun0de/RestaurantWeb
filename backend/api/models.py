@@ -20,6 +20,7 @@ class MenuItem(models.Model):
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     photo = models.ImageField(upload_to='menu_items/', null=True, blank=True)
+    is_featured = models.BooleanField(default=False)
     def __str__(self): return self.name
     def formatted_price(self): return f"{self.price} Kč"
 

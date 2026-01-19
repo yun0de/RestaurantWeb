@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="relative bg-hero-black text-white overflow-hidden">
+  <!-- Right-side hero image (absolute) -->
+  <div class="absolute inset-y-0 right-0 w-0 lg:w-1/2 xl:w-7/12">
+    <img src="{% static 'img/hero-extended.jpg' %}" alt="hero image" class="h-full w-full object-cover block">
+    <div class="absolute left-0 top-0 h-full w-32 lg:w-48"
+         style="background: linear-gradient(to right, rgba(11,11,11,0.95), rgba(11,11,11,0)); pointer-events:none;"></div>
+  </div>
+
+  <!-- Content container -->
+  <div class="relative z-10 max-w-6xl mx-auto px-6 py-20 lg:py-28">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      <div class="lg:pr-12">
+        <h1 class="hero-title mb-6" style="color:var(--asian-red)">
+          Experience the Taste of Asia
+        </h1>
+
+        <p class="text-lg text-white/80 max-w-xl mb-8">
+          Savor our authentic dishes crafted with fresh ingredients and traditional recipes.
+        </p>
+
+        <a href="#favorites" class="inline-block bg-asian-red text-white px-6 py-3 rounded-full shadow-md hover:opacity-95">>Discover our favorites</a>
+      </div>
+
+      <!-- empty right column for spacing on large screens -->
+      <div class="hidden lg:block"></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="page-beige-bg">
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="values-title text-center mb-10" style="color:var(--asian-red)">Our Core Values</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 items-start text-center">
+      <div class="px-6">
+        <img src="{% static 'img/icon-authentic.png' %}" class="mx-auto h-12 mb-4" alt="authentic">
+        <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Authentic Recipes</h3>
+        <p class="text-sm text-gray-700 max-w-xs mx-auto">Traditional recipes that capture the true essence of Asian cuisine.</p>
+      </div>
+
+      <div class="px-6 border-l border-r border-panel-divider">
+        <img src="{% static 'img/icon-fresh.png' %}" class="mx-auto h-12 mb-4" alt="fresh">
+        <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Fresh Ingredients</h3>
+        <p class="text-sm text-gray-700 max-w-xs mx-auto">We use locally sourced, high-quality, fresh ingredients in every dish.</p>
+      </div>
+
+      <div class="px-6">
+        <img src="{% static 'img/icon-service.png' %}" class="mx-auto h-12 mb-4" alt="service">
+        <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Exceptional Service</h3>
+        <p class="text-sm text-gray-700 max-w-xs mx-auto">Dedicated to providing outstanding service and a memorable dining experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDERS -->
+<section id="founders" class="bg-page-beige">
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <h2 class="text-3xl font-display text-center mb-6" style="color:var(--asian-red)">From the Founders</h2>
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="founder-quote mb-6">“We are passionate about sharing the rich culinary heritage of Asia with our community. Our mission is to create a warm and welcoming atmosphere where every guest feels like family and leaves with unforgettable memories.”</p>
+      <div class="flex justify-center gap-12 mt-10 founders-row">
+
+  <!-- Founder 1 -->
+  <div class="text-center founder">
+    <img src="{% static 'img/founder-1.jpg' %}"
+         alt="Founder"
+         class="founder-photo rounded-full mx-auto">
+    <h4 class="mt-4 text-lg font-semibold">Jason Chen</h4>
+  </div>
+
+  <!-- Founder 2 -->
+  <div class="text-center founder">
+    <img src="{% static 'img/female_foundr.png' %}"
+         alt="Founder"
+         class="founder-photo rounded-full mx-auto">
+    <h4 class="mt-4 text-lg font-semibold">Emily Wong</h4>
+  </div>
+
+
+
+    </div>
+  </div>
+</section>
+<!-- MENU PREVIEW -->
+<section id="favorites" class="bg-page-beige py-24">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-display mb-4" style="color:var(--asian-red)">
+        Signature Dishes
+      </h2>
+      <p class="text-gray-600 max-w-xl mx-auto">
+       A curated selection of dishes that represent the heart of our kitchen.
+      </p>
+    </div>
+
+    {% if menu_items %}
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+        {% for item in menu_items %}
+          <!-- GRID ITEM -->
+          <div
+            class="group relative cursor-pointer overflow-hidden rounded-xl shadow-lg bg-white"
+          >
+            <!-- IMAGE (click opens modal) -->
+            <button
+              type="button"
+              class="w-full h-72 block modal-open"
+              aria-label="View {{ item.name }}"
+              data-title="{{ item.name|escapejs }}"
+              data-description="{{ item.description|default:''|escapejs }}"
+              data-price="{% if item.formatted_price %}{{ item.formatted_price|escapejs }}{% elif item.price %}{{ item.price }} Kč{% endif %}"
+              data-image="{% if item.photo %}{{ item.photo.url }}{% else %}{% static 'img/menu-placeholder.jpg' %}{% endif %}"
+              style="border:0; padding:0; background:transparent;"
+            >
+              <img
+                src="{% if item.photo %}{{ item.photo.url }}{% else %}{% static 'img/menu-placeholder.jpg' %}{% endif %}"
+                alt="{{ item.name }}"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              >
+            </button>
+
+            <!-- OVERLAY -->
+            <div
+              class="pointer-events-none absolute inset-0 bg-black/55 opacity-0
+                     group-hover:opacity-100 transition-opacity duration-300
+                     flex items-center justify-center text-center p-6"
+            >
+              <div class="text-white">
+                <h3 class="text-xl font-semibold mb-2">
+                  {{ item.name }}
+                </h3>
+                {% if item.description %}
+                  <p class="text-sm opacity-90 line-clamp-3">
+                    {{ item.description }}
+                  </p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+    {% else %}
+      <p class="text-center text-gray-600 mt-6">No menu items found.</p>
+    {% endif %}
+
+  </div>
+
+  {{ block.super }}
+</section>
+
+{% include "partials/menu_modal.html" %}
+
+
+{% endblock %}

@@ -1,0 +1,119 @@
+<!-- MENU MODAL -->
+<div id="menuModal"
+     class="fixed inset-0 z-50 hidden flex items-center justify-center px-4 py-6"
+     aria-hidden="true">
+
+  <div id="modalBackdrop"
+       class="absolute inset-0 bg-black bg-opacity-60 transition-opacity"></div>
+
+  <div id="modalPanel"
+       class="relative bg-white rounded-lg shadow-xl max-w-3xl w-full
+              transform transition-all scale-95 opacity-0"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="modalTitle"
+       aria-describedby="modalDescription"
+       aria-hidden="true">
+
+    <!-- Close button -->
+    <button id="modalClose"
+            aria-label="Close"
+            class="absolute top-3 right-3 w-12 h-12 rounded-full bg-white
+                   shadow-lg border flex items-center justify-center z-50">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M6 6L18 18M6 18L18 6"
+              stroke="#111" stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="p-6 max-h-[80vh] overflow-y-auto">
+      <img id="modalImage"
+           src=""
+           alt=""
+           class="w-full h-72 md:h-96 object-cover rounded mb-4">
+
+      <div class="flex items-start justify-between mb-3">
+        <h2 id="modalTitle" class="text-2xl font-semibold"></h2>
+        <div id="modalPrice"
+             class="text-lg font-bold text-asian-red ml-4"></div>
+      </div>
+
+      <div id="modalDescription"
+           class="text-gray-700 leading-relaxed whitespace-pre-line"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const modalWrap = document.getElementById('menuModal');
+  const backdrop = document.getElementById('modalBackdrop');
+  const panel = document.getElementById('modalPanel');
+  const closeBtn = document.getElementById('modalClose');
+  const img = document.getElementById('modalImage');
+  const titleEl = document.getElementById('modalTitle');
+  const descEl = document.getElementById('modalDescription');
+  const priceEl = document.getElementById('modalPrice');
+
+  let lastFocused = null;
+
+  function openModal(button) {
+    img.src = button.dataset.image || '';
+    img.alt = button.dataset.title || '';
+    titleEl.textContent = button.dataset.title || '';
+    priceEl.textContent = button.dataset.price || '';
+    descEl.innerHTML = button.dataset.description || '';
+
+    modalWrap.classList.remove('hidden');
+    modalWrap.classList.add('flex');
+    modalWrap.setAttribute('aria-hidden', 'false');
+
+    document.body.classList.add('body-modal-open');
+
+    panel.setAttribute('aria-hidden', 'false');
+    panel.style.opacity = '0';
+    panel.style.transform = 'translateY(-8px) scale(.98)';
+
+    requestAnimationFrame(() => {
+      panel.style.opacity = '1';
+      panel.style.transform = 'translateY(0) scale(1)';
+    });
+
+    lastFocused = document.activeElement;
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    panel.style.opacity = '0';
+    panel.style.transform = 'translateY(-8px) scale(.98)';
+
+    setTimeout(() => {
+      modalWrap.classList.add('hidden');
+      modalWrap.classList.remove('flex');
+      modalWrap.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('body-modal-open');
+      panel.style.opacity = '';
+      panel.style.transform = '';
+      if (lastFocused) lastFocused.focus();
+    }, 240);
+  }
+
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.modal-open');
+    if (!btn) return;
+    e.preventDefault();
+    openModal(btn);
+  });
+
+  backdrop.addEventListener('click', closeModal);
+  closeBtn.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modalWrap.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+});
+</script>

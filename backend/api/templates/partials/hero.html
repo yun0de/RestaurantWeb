@@ -1,0 +1,25 @@
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const texts = document.querySelectorAll(".hero-text-slide");
+  const images = document.querySelectorAll(".hero-image");
+
+  let index = 0;
+  const total = texts.length;
+
+  // 🔑 EXPLICIT INITIAL STATE (fix první slide bez textu)
+  texts.forEach((t, i) => t.classList.toggle("is-active", i === 0));
+  images.forEach((img, i) => img.classList.toggle("is-active", i === 0));
+
+  setInterval(() => {
+    const next = (index + 1) % total;
+
+    texts[next].classList.add("is-active");
+    images[next].classList.add("is-active");
+
+    texts[index].classList.remove("is-active");
+    images[index].classList.remove("is-active");
+
+    index = next;
+  }, 7000);
+});
+</script>

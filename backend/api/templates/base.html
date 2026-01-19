@@ -27,15 +27,17 @@
 <body class="bg-page-beige text-gray-800 antialiased">
 
   <!-- HEADER -->
-  <header class="bg-hero-black">
+  <header class="bg-hero-black sticky top-0 z-50 bg-black transition-shadow">
     <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3">
         <img src="{% static 'img/logo.png' %}" alt="Asian Restaurant" class="h-8 w-auto">
         <span class="hidden sm:inline font-display text-asian-red font-semibold">Asian Restaurant</span>
       </a>
       <nav class="text-white text-sm">
-        <a href="#menu" class="px-4 hover:underline">Menu</a>
+        <a href="{% url 'home' %}"class="px-4 hover:underline">Home</a>
+        <a href="#favorites" class="px-4 hover:underline">Favorite picks</a>
         <a href="#founders" class="px-4 hover:underline">Founders</a>
+        <a href="{% url 'menu' %}" class="px-4 hover:underline">Menu</a>
         <a href="/admin" class="px-4 hover:underline">Admin</a>
       </nav>
     </div>
@@ -45,89 +47,67 @@
     {% block content %}{% endblock %}
   </main>
 
-<!-- BEGIN: Site footer -->
-<!-- Footer: left = hours, center = contact, right = map; top social centered; bottom copyright right -->
-<footer class="bg-black text-white">
-  <div class="max-w-6xl mx-auto px-6 py-16"> <!-- <-- use same max-width as your body -->
+<!-- FOOTER -->
+<footer class="bg-black text-white pt-24">
 
-    <!-- TOP: Social / headline (centered) -->
-    <div class="text-center mb-12">
-      <p class="text-sm">Find news & updates on our</p>
-      <p class="text-2xl font-semibold mt-2">Instagram and Facebook.</p>
-    </div>
+  <!-- 🔹 Social -->
+  <div class="text-center mb-20">
+    <p class="text-sm text-gray-400">
+      Find news & updates on our
+    </p>
+    <p class="text-xl font-semibold">
+      Instagram and Facebook.
+    </p>
+  </div>
 
-    <!-- MIDDLE: grid with explicit justify-self on children -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+  <!-- 🔹 TŘI BLOKY NA JEDNÉ ŘÁDCE -->
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 items-start">
 
-      <!-- LEFT: Opening hours -->
-      <div class="order-2 md:order-1 justify-self-center md:justify-self-start flex flex-col items-center md:items-start text-center md:text-left">
-        <h3 class="font-semibold mb-3">Opening hours</h3>
-        <div class="text-sm space-y-1">
-          <div><span class="inline-block w-20 md:w-24">Mon – Fri</span><span>11:30 – 23:00</span></div>
-          <div><span class="inline-block w-20 md:w-24">Sat</span><span>12:00 – 23:00</span></div>
-          <div><span class="inline-block w-20 md:w-24">Sun</span><span>12:00 – 22:00</span></div>
-          <div><span class="inline-block w-20 md:w-24">Holidays</span><span>12:00 – 23:00</span></div>
-        </div>
+      <!-- Opening hours -->
+      <div>
+        <h3 class="mb-4 font-semibold">Opening hours</h3>
+        <p class="text-sm text-gray-300 leading-relaxed">
+          Mon – Fri: 11:30 – 23:00<br>
+          Sat: 12:00 – 23:00<br>
+          Sun: 12:00 – 22:00<br>
+          Holidays: 12:00 – 23:00
+        </p>
       </div>
 
-      <!-- CENTER: Address & contact (centered) -->
-      <div class="order-1 md:order-2 justify-self-center flex flex-col items-center text-center">
-        <h3 class="font-semibold mb-3">Contact</h3>
-
-        <p class="mb-2">Asian Restaurant</p>
-        <address class="not-italic mb-2 text-sm">
+      <!-- Contact -->
+      <div>
+        <h3 class="mb-4 font-semibold">Contact</h3>
+        <p class="text-sm text-gray-300 leading-relaxed">
+          Asian Restaurant<br>
           123 Example Street<br>
           Cityname, ZIP 12345<br>
-          Country
-        </address>
-
-        <p class="text-sm"><a href="mailto:hello@example.com" class="underline">hello@example.com</a></p>
-        <p class="text-sm mb-3"><a href="tel:+420123456789" class="underline">+420 123 456 789</a></p>
+          Country<br><br>
+          hello@example.com<br>
+          +420 123 456 789
+        </p>
       </div>
 
-      <!-- RIGHT: Google Maps (right-aligned on desktop) -->
-      <div class="order-3 md:order-3 justify-self-center md:justify-self-end flex flex-col items-center md:items-end text-center md:text-right">
-        <h3 class="sr-only">Map</h3>
-        <div class="w-full max-w-xs md:max-w-sm rounded overflow-hidden border border-white/10">
-          <iframe
-            src="https://maps.google.com/maps?q=123%20Example%20Street%20Cityname&t=&z=15&ie=UTF8&iwloc=&output=embed"
-            width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-
-    </div> <!-- end middle grid -->
-
-  </div> <!-- end content container -->
-
-  <!-- BOTTOM bar: three columns so right column sits flush right -->
-  <div class="border-t border-white/10">
-    <div class="max-w-6xl mx-auto px-6 py-6 grid grid-cols-1 md:grid-cols-3 items-center">
-
-      <!-- left: intentionally empty (keeps layout) -->
-      <div class="hidden md:block"></div>
-
-      <!-- center: show on mobile -->
-      <div class="md:hidden text-xs text-white/80 text-center py-2">
-        © {% now "Y" %} Asian Restaurant — All rights reserved.
-        <div><a href="/privacy" class="underline mr-3">Privacy</a><a href="/terms" class="underline">Terms</a></div>
-      </div>
-
-      <!-- right: desktop copyright and links (flush right) -->
-      <div class="justify-self-center md:justify-self-end flex flex-col md:flex-row md:items-center md:space-x-6 text-xs text-white/80">
-        <div class="hidden md:block">© {% now "Y" %} Asian Restaurant — All rights reserved.</div>
-        <div class="flex items-center space-x-4 mt-3 md:mt-0">
-          <a href="/privacy" class="underline">Privacy</a>
-          <a href="/terms" class="underline">Terms</a>
+      <!-- Map -->
+      <div>
+        <h3 class="mb-4 font-semibold">Map</h3>
+        <div class="w-full h-56 rounded overflow-hidden">
+          <!-- iframe map -->
         </div>
       </div>
 
     </div>
   </div>
+
+  <!-- 🔹 Bottom -->
+  <div class="text-center text-sm text-gray-500 mt-20 pb-10">
+    © 2025 Asian Restaurant — All rights reserved.<br>
+    <a href="#" class="underline">Privacy</a> · <a href="#" class="underline">Terms</a>
+  </div>
+
 </footer>
 
 
-
-<!-- END: Site footer -->
 
 </body>
 </html>

@@ -2,39 +2,153 @@
 {% load static %}
 
 {% block content %}
+<!-- ================= HERO ================= -->
+{% comment %} <section class="relative bg-black overflow-hidden min-h-[70vh]"> {% endcomment %}
+<section class="relative bg-hero-black text-white overflow-hidden min-h-[40vh]">
 
-<!-- HERO -->
-<section class="relative bg-hero-black text-white overflow-hidden">
-  <!-- Right-side hero image (absolute) -->
-  <div class="absolute inset-y-0 right-0 w-0 lg:w-1/2 xl:w-7/12">
-    <img src="{% static 'img/hero-extended.jpg' %}" alt="hero image" class="h-full w-full object-cover block">
-    <div class="absolute left-0 top-0 h-full w-32 lg:w-48"
+  <!-- RIGHT IMAGE (BACKGROUND, FULL WIDTH) -->
+  <div class="absolute inset-y-0 right-0 w-[55%]">
+    <div id="hero-image-slides" class="relative w-full h-full">
+
+      <!-- IMAGE 1 -->
+      {% comment %} <div class="hero-image absolute inset-0 bg-cover bg-center"
+           style="background-image:url('{% static "img/hero-extended.jpg" %}')">
+      </div> {% endcomment %}
+      <div class="hero-image is-active absolute inset-y-0 right-0 w-0 lg:w-1/2 xl:w-7/12">
+          <img src="{% static 'img/hero-extended.jpg' %}" alt="hero image" class="h-full w-full object-cover block">
+       <div class="absolute left-0 top-0 h-full w-32 lg:w-48"
+         style="background: linear-gradient(to right, rgba(11,11,11,0.95), rgba(11,11,11,0)); pointer-events:none;"></div>
+  </div>
+      <!-- IMAGE 2 -->
+         <div class="hero-image absolute inset-y-0 right-0 w-0 lg:w-1/2 xl:w-7/12">
+          <img src="{% static 'img/474459417_621716893662562_8345107166144038612_n.jpg' %}" alt="hero image" class="h-full w-full object-cover block">
+       <div class="absolute left-0 top-0 h-full w-32 lg:w-48"
          style="background: linear-gradient(to right, rgba(11,11,11,0.95), rgba(11,11,11,0)); pointer-events:none;"></div>
   </div>
 
-  <!-- Content container -->
-  <div class="relative z-10 max-w-6xl mx-auto px-6 py-20 lg:py-28">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-      <div class="lg:pr-12">
-        <h1 class="hero-title mb-6" style="color:var(--asian-red)">
-          Experience the Taste of Asia
-        </h1>
+    </div>
 
-        <p class="text-lg text-white/80 max-w-xl mb-8">
-          Savor our authentic dishes crafted with fresh ingredients and traditional recipes.
-        </p>
+    <!-- GRADIENT OVER IMAGE -->
+    <div class="absolute inset-y-0 left-0 w-40
+                bg-gradient-to-r from-black to-transparent"></div>
+  </div>
 
-        <a href="#menu" class="inline-block bg-asian-red text-white px-6 py-3 rounded-full shadow-md hover:opacity-95">Go to Menu</a>
+  <!-- CONTENT -->
+  <div class="relative z-10 max-w-7xl mx-auto h-full flex items-center">
+    <div class="pl-6 lg:pl-24 max-w-xl">
+
+      <div id="hero-text-slides">
+
+        <!-- TEXT 1 -->
+        <div class="hero-text-slide">
+              <h1 class="hero-title is-active text-asian-red mb-6 text-4xl md:text-5xl lg:text-6xl  leading-tight">Experience<br>the Taste of Asia
+          </h1>
+          <p class="text-white/80 mb-8">
+            Savor our authentic dishes crafted with fresh ingredients and
+            traditional recipes.
+          </p>
+          <a href="#favorites"
+             class="inline-block bg-asian-red text-white px-6 py-3 rounded-full">
+            Discover our menu
+          </a>
+        </div>
+
+        <!-- TEXT 2 -->
+        <div class="hero-text-slide ">
+         <h1 class="hero-title text-asian-red mb-6 text-4xl md:text-5xl lg:text-6xl  leading-tight">
+            Handmade Noodles,<br>Every Day
+          </h1>
+          <p class="text-white/80 mb-8">
+            We prepare our noodles fresh in-house every day using traditional
+            techniques for perfect texture and taste.
+          </p>
+          <a href="#favorites"
+             class="inline-block border border-asian-red text-asian-red px-6 py-3 rounded-full hover:bg-asian-red hover:text-white transition">
+            See our signature dishes
+          </a>
+        </div>
+
       </div>
 
-      <!-- empty right column for spacing on large screens -->
-      <div class="hidden lg:block"></div>
     </div>
   </div>
+
 </section>
 
-<!-- VALUES -->
-<section class="page-beige-bg">
+
+
+<!-- ================= SIGNATURE DISHES ================= -->
+<section id="favorites" class="bg-page-beige py-24">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-display mb-4" style="color:var(--asian-red)">
+        Signature Dishes
+      </h2>
+      <p class="text-gray-600 max-w-xl mx-auto">
+       A curated selection of dishes that represent the heart of our kitchen.
+      </p>
+    </div>
+
+    {% if menu_items %}
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+        {% for item in menu_items %}
+          <!-- GRID ITEM -->
+          <div
+            class="group relative cursor-pointer overflow-hidden rounded-xl shadow-lg bg-white"
+          >
+            <!-- IMAGE (click opens modal) -->
+            <button
+              type="button"
+              class="w-full h-72 block modal-open"
+              aria-label="View {{ item.name }}"
+              data-title="{{ item.name|escapejs }}"
+              data-description="{{ item.description|default:''|escapejs }}"
+              data-price="{% if item.formatted_price %}{{ item.formatted_price|escapejs }}{% elif item.price %}{{ item.price }} Kč{% endif %}"
+              data-image="{% if item.photo %}{{ item.photo.url }}{% else %}{% static 'img/menu-placeholder.jpg' %}{% endif %}"
+              style="border:0; padding:0; background:transparent;"
+            >
+              <img
+                src="{% if item.photo %}{{ item.photo.url }}{% else %}{% static 'img/menu-placeholder.jpg' %}{% endif %}"
+                alt="{{ item.name }}"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              >
+            </button>
+
+            <!-- OVERLAY -->
+            <div
+              class="pointer-events-none absolute inset-0 bg-black/55 opacity-0
+                     group-hover:opacity-100 transition-opacity duration-300
+                     flex items-center justify-center text-center p-6"
+            >
+              <div class="text-white">
+                <h3 class="text-xl font-semibold mb-2">
+                  {{ item.name }}
+                </h3>
+                {% if item.description %}
+                  <p class="text-sm opacity-90 line-clamp-3">
+                    {{ item.description }}
+                  </p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+    {% else %}
+      <p class="text-center text-gray-600 mt-6">No menu items found.</p>
+    {% endif %}
+
+  </div>
+
+  {{ block.super }}
+</section>
+<!-- ================= CORE VALUES ================= -->
+<section class="bg-page-beige py-24">
+{% comment %} <section class="page-beige-bg"> {% endcomment %}
   <div class="max-w-6xl mx-auto px-6 py-16">
     <h2 class="values-title text-center mb-10" style="color:var(--asian-red)">Our Core Values</h2>
 
@@ -42,23 +156,51 @@
       <div class="px-6">
         <img src="{% static 'img/icon-authentic.png' %}" class="mx-auto h-12 mb-4" alt="authentic">
         <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Authentic Recipes</h3>
-        <p class="text-sm text-gray-700 max-w-xs mx-auto">Traditional recipes that capture the true essence of Asian cuisine.</p>
+        <p class="text-sm text-gray-700 max-w-xs mx-auto">We cook the dishes we grew up with – honest, traditional and full of flavor.</p>
       </div>
 
       <div class="px-6 border-l border-r border-panel-divider">
         <img src="{% static 'img/icon-fresh.png' %}" class="mx-auto h-12 mb-4" alt="fresh">
         <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Fresh Ingredients</h3>
-        <p class="text-sm text-gray-700 max-w-xs mx-auto">We use locally sourced, high-quality, fresh ingredients in every dish.</p>
+        <p class="text-sm text-gray-700 max-w-xs mx-auto">Every morning we select fresh produce and prepare everything from scratch.</p>
       </div>
 
       <div class="px-6">
         <img src="{% static 'img/icon-service.png' %}" class="mx-auto h-12 mb-4" alt="service">
         <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Exceptional Service</h3>
-        <p class="text-sm text-gray-700 max-w-xs mx-auto">Dedicated to providing outstanding service and a memorable dining experience.</p>
+        <p class="text-sm text-gray-700 max-w-xs mx-auto">We want you to feel relaxed, welcome and at home every time you visit.</p>
       </div>
     </div>
   </div>
 </section>
+</section>
+
+<!-- ================= ATMOSPHERE ================= -->
+<section class="relative w-full min-h-[60vh] flex items-center">
+
+  <img
+    src="{% static 'img/restaurant-interior.jpg' %}"
+    alt="Restaurant atmosphere"
+    class="absolute inset-0 w-full h-full object-cover"
+  >
+
+  <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/10"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6">
+    <div class="max-w-xl text-white">
+      <h2 class="text-4xl font-display mb-6">
+        More Than a Meal
+      </h2>
+      <p class="text-white/90 leading-relaxed">
+        Our restaurant was created as a place where authentic Asian flavors meet
+        a calm, welcoming atmosphere.
+      </p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================= FOUNDERS ================= -->
 
 <!-- FOUNDERS -->
 <section id="founders" class="bg-page-beige">
@@ -86,240 +228,8 @@
 
 
 
-    </div>
-  </div>
-</section>
-<!-- MENU PREVIEW -->
-<section id="menu" class="bg-page-beige pb-20">
-  <div class="max-w-6xl mx-auto px-6 py-12">
-    <h2 class="text-3xl font-display mb-8 text-center" style="color:var(--asian-red)">Explore Our Menu</h2>
-
-    {% if menu_items %}
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-1 gap-4">
-
-        {% for item in menu_items %}
-          <!-- card -->
-          <article class="bg-white rounded-lg shadow p-4 menu-card md:flex md:items-stretch md:gap-6" role="article" aria-labelledby="menu-item-{{ item.pk }}">
-            <!-- image column -->
-          <div class="menu-card__media w-full md:w-2/5 flex-shrink-0 rounded overflow-hidden">
-{% comment %} clickable image opens modal; data-* attributes mirror the View button {% endcomment %}
-              {% if item.photo %}
-                <button
-                  type="button"
-                  class="w-full h-56 md:h-full block modal-open"
-                  aria-label="View {{ item.name }}"
-                  data-title="{{ item.name|escapejs }}"
-                  data-description="{{ item.description|default:''|escapejs }}"
-                  data-price="{% if item.formatted_price %}{{ item.formatted_price|escapejs }}{% elif item.price %}{{ item.price }} Kč{% endif %}"
-                  data-image="{{ item.photo.url }}"
-                  style="border:0; padding:0; background:transparent; display:block; width:100%; height:100%;"
-                >
-                  <img src="{{ item.photo.url }}" alt="{{ item.name }}" class="w-full h-full object-cover block rounded">
-                </button>
-              {% else %}
-                <button
-                  type="button"
-                  class="w-full h-56 md:h-full block modal-open"
-                  aria-label="View {{ item.name }}"
-                  data-title="{{ item.name|escapejs }}"
-                  data-description="{{ item.description|default:''|escapejs }}"
-                  data-price="{% if item.formatted_price %}{{ item.formatted_price|escapejs }}{% elif item.price %}{{ item.price }} Kč{% endif %}"
-                  data-image="{% static 'img/menu-placeholder.jpg' %}"
-                  style="border:0; padding:0; background:transparent; display:block; width:100%; height:100%;"
-                >
-                  <img src="{% static 'img/menu-placeholder.jpg' %}" alt="{{ item.name }}" class="w-full h-full object-cover block rounded">
-                </button>
-              {% endif %}
-</div>
-
-
-            <!-- content column -->
-            <div class="menu-card__content w-full flex flex-col px-0 md:px-2">
-
-              <!-- TOP ROW: title and price -->
-              <div class="flex items-start justify-between gap-4 w-full">
-                <div class="flex-1 pr-3">
-                  <h3 id="menu-item-{{ item.pk }}" class="menu-card__title text-xl font-semibold leading-snug mb-0">{{ item.name }}</h3>
-                </div>
-
-                <div class="menu-card__price text-right font-semibold flex-shrink-0 whitespace-nowrap">
-                  {% if item.formatted_price %}
-                    {{ item.formatted_price }}
-                  {% elif item.price %}
-                    {{ item.price }} Kč
-                  {% else %}
-                    —
-                  {% endif %}
-                </div>
-              </div>
-
-              <!-- DESCRIPTION -->
-              <div class="mt-3 text-sm text-gray-600 break-words">
-                {{ item.description|default:"No description provided." }}
-              </div>
-
-              <!-- VIEW button -> opens modal (data attributes hold item data) -->
-              <div class="mt-auto flex justify-end">
-                <button
-                  type="button"
-                  class="text-sm text-asian-red hover:underline modal-open"
-                  data-title="{{ item.name|escapejs }}"
-                  data-description="{{ item.description|default:''|escapejs }}"
-                  data-price="{% if item.formatted_price %}{{ item.formatted_price|escapejs }}{% elif item.price %}{{ item.price }} Kč{% endif %}"
-                  data-image="{% if item.photo %}{{ item.photo.url }}{% else %}{% static 'img/menu-placeholder.jpg' %}{% endif %}"
-                >
-                  View
-                </button>
-              </div>
-
-            </div>
-          </article>
-        {% endfor %}
-
-      </div>
-    {% else %}
-      <p class="text-center text-gray-600 mt-6">No menu items found.</p>
-    {% endif %}
-
-  </div>
-
-  <!-- SINGLE MODAL (kept once per page) -->
-  {% comment %} <div id="menuModal" class="fixed inset-0 z-50 hidden items-center justify-center px-4 py-6" aria-hidden="true"> {% endcomment %}
-  <div id="menuModal" class="fixed inset-0 z-50 hidden flex items-center justify-center px-4 py-6" aria-hidden="true">
-
-    <div id="modalBackdrop" class="absolute inset-0 bg-black bg-opacity-60 transition-opacity"></div>
-
-    <div id="modalPanel"
-         class="relative bg-white rounded-lg shadow-xl max-w-3xl w-full transform transition-all scale-95 opacity-0"
-         role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription" aria-hidden="true">
-<button id="modalClose" aria-label="Close"
-  style="position:absolute; top:12px; right:12px; left:auto; width:48px; height:48px;
-         background:#fff; border-radius:9999px; display:inline-flex; align-items:center;
-         justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.18); border:1px solid rgba(0,0,0,0.08);
-         z-index:9999; cursor:pointer; padding:0;"
->
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-    <path d="M6 6L18 18M6 18L18 6" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</button>
-
-
-
-      <div class="p-6 max-h-[80vh] overflow-y-auto">
-        <!-- larger image -->
-        <img id="modalImage" src="" alt="" class="w-full h-72 md:h-96 object-cover rounded mb-4">
-
-        <div class="flex items-start justify-between mb-3">
-          <h2 id="modalTitle" class="text-2xl font-semibold"></h2>
-          <div id="modalPrice" class="text-lg font-bold text-asian-red ml-4"></div>
-        </div>
-
-        <!-- description area: long text scrolls; preserves newlines -->
-        <div id="modalDescription" class="text-gray-700 leading-relaxed whitespace-pre-line"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Modal script (self-contained) -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const modalWrap = document.getElementById('menuModal');
-  const backdrop = document.getElementById('modalBackdrop');
-  const panel = document.getElementById('modalPanel');
-  const closeBtn = document.getElementById('modalClose');
-  const img = document.getElementById('modalImage');
-  const titleEl = document.getElementById('modalTitle');
-  const descEl = document.getElementById('modalDescription');
-  const priceEl = document.getElementById('modalPrice');
-
-  let lastFocused = null;
-
-  function openModal(button) {
-    const image = button.getAttribute('data-image') || '';
-    const title = button.getAttribute('data-title') || '';
-    const desc = button.getAttribute('data-description') || '';
-    const price = button.getAttribute('data-price') || '';
-
-    // debug log (open console if nothing shows)
-    console.log('Opening modal:', { title, price, image, hasDescription: !!desc });
-
-    img.src = image;
-    img.alt = title;
-    titleEl.textContent = title;
-    priceEl.textContent = price;
-    descEl.innerHTML = desc; // use textContent instead if you prefer plain text
-
-    // show modal wrapper
-    modalWrap.classList.remove('hidden');
-    modalWrap.classList.add('flex');      // <-- add this
-    modalWrap.setAttribute('aria-hidden', 'false');
-
-
-    // lock body scroll
-    document.body.classList.add('body-modal-open');
-
-    // animate panel: set aria-hidden false and inline styles so CSS transition plays
-    panel.setAttribute('aria-hidden', 'false');
-    panel.style.opacity = '0';
-    panel.style.transform = 'translateY(-8px) scale(.98)';
-
-    requestAnimationFrame(() => {
-      backdrop.classList.add('backdrop-visible');
-      panel.style.opacity = '1';
-      panel.style.transform = 'translateY(0) scale(1)';
-    });
-
-    lastFocused = document.activeElement;
-    closeBtn.focus();
-  }
-
-  function closeModal() {
-    backdrop.classList.remove('backdrop-visible');
-    panel.style.opacity = '0';
-    panel.style.transform = 'translateY(-8px) scale(.98)';
-    panel.setAttribute('aria-hidden', 'true');
-
-    setTimeout(() => {
-      modalWrap.classList.add('hidden');
-      modalWrap.classList.remove('flex');   // <-- add this
-      modalWrap.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('body-modal-open');
-      panel.style.opacity = '';
-      panel.style.transform = '';
-      if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
-    }, 240);
-  }
-
-  // Event delegation for modal-open buttons
-  document.addEventListener('click', function(e) {
-    const btn = e.target.closest && e.target.closest('.modal-open');
-    if (!btn) return;
-    e.preventDefault();
-    openModal(btn);
-  });
-
-  // close handlers
-  closeBtn.addEventListener('click', closeModal);
-  backdrop.addEventListener('click', closeModal);
-
-  // ESC closes
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !modalWrap.classList.contains('hidden')) closeModal();
-  });
-
-  // basic focus trap
-  modalWrap.addEventListener('keydown', function(e) {
-    if (e.key !== 'Tab') return;
-    const focusable = Array.from(panel.querySelectorAll('a, button, input, textarea, [tabindex]:not([tabindex="-1"])'))
-      .filter(el => !el.hasAttribute('disabled'));
-    if (focusable.length === 0) return;
-    const first = focusable[0], last = focusable[focusable.length-1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  });
-});
-</script>
-
+<!-- MODAL + HERO JS -->
+{% include "partials/menu_modal.html" %}
+{% include "partials/hero.html" %}
 
 {% endblock %}
