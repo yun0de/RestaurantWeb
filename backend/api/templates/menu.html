@@ -2,37 +2,43 @@
 {% load static %}
 
 {% block content %}
-<section class="bg-page-beige py-24">
-  <div class="max-w-4xl mx-auto px-6">
+<section class="menu-section">
+ <div class="menu-container">
+  <h1 class="menu-title">Our Menu</h1>
+  <p class="menu-subtitle">
+    Discover our full selection of authentic Asian dishes.
+  </p>
 
-    <div class="text-center mb-16">
-      <h1 class="text-4xl font-display mb-4" style="color:var(--asian-red)">
-        Our Menu
-      </h1>
-      <p class="text-gray-600">
-        Discover our full selection of authentic Asian dishes.
-      </p>
-    </div>
+  <!-- SWITCHER -->
+  <div class="menu-toggle">
+    <button class="menu-btn active" data-target="menu-html">
+      🍜 Web version of menu
+    </button>
+    <button class="menu-btn" data-target="menu-pdf">
+      📄 Printed version of menu with pictures
+    </button>
+  </div>
 
-    <div class="space-y-10">
-      {% for item in items %}
-        <div class="flex justify-between gap-6 border-b border-gray-200 pb-4">
-          <div>
-            <h3 class="text-lg font-semibold">{{ item.name }}</h3>
-            {% if item.description %}
-              <p class="text-sm text-gray-600 mt-1">
-                {{ item.description }}
-              </p>
-            {% endif %}
-          </div>
-
-          <div class="font-semibold text-asian-red whitespace-nowrap">
-            {{ item.price }} Kč
-          </div>
+  <!-- HTML MENU -->
+  <div id="menu-html" class="menu-content">
+    <!-- Tvoje stávající menu -->
+    {% for item in items %}
+      <div class="menu-item">
+        <div>
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.description }}</p>
         </div>
-      {% endfor %}
-    </div>
+        <span class="price">{{ item.price }} Kč</span>
+      </div>
+    {% endfor %}
+  </div>
 
+  <!-- PDF / IMAGE MENU -->
+  <div id="menu-pdf" class="menu-content hidden">
+    {% comment %} <img src="{% static 'menu/menu-page-1.jpg' %}" alt="Menu page 1">
+    <img src="{% static 'menu/menu-page-2.jpg' %}" alt="Menu page 2"> {% endcomment %}
+  </div>
   </div>
 </section>
+{% include "partials/menu_switch.js" %}
 {% endblock %}

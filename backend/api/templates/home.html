@@ -4,24 +4,25 @@
 {% block content %}
 <!-- ================= HERO ================= -->
 {% comment %} <section class="relative bg-black overflow-hidden min-h-[70vh]"> {% endcomment %}
-<section class="relative bg-hero-black text-white overflow-hidden min-h-[40vh]">
+<section id="hero" class="relative bg-hero-black text-white overflow-hidden min-h-[40vh]">
 
   <!-- RIGHT IMAGE (BACKGROUND, FULL WIDTH) -->
-  <div class="absolute inset-y-0 right-0 w-[55%]">
+  <div class="absolute inset-y-0 right-0 w-[50%]">
     <div id="hero-image-slides" class="relative w-full h-full">
 
       <!-- IMAGE 1 -->
       {% comment %} <div class="hero-image absolute inset-0 bg-cover bg-center"
            style="background-image:url('{% static "img/hero-extended.jpg" %}')">
       </div> {% endcomment %}
-      <div class="hero-image is-active absolute inset-y-0 right-0 w-0 lg:w-1/2 xl:w-7/12">
+      <div class="hero-image absolute inset-0">
           <img src="{% static 'img/hero-extended.jpg' %}" alt="hero image" class="h-full w-full object-cover block">
        <div class="absolute left-0 top-0 h-full w-32 lg:w-48"
          style="background: linear-gradient(to right, rgba(11,11,11,0.95), rgba(11,11,11,0)); pointer-events:none;"></div>
   </div>
       <!-- IMAGE 2 -->
-         <div class="hero-image absolute inset-y-0 right-0 w-0 lg:w-1/2 xl:w-7/12">
-          <img src="{% static 'img/474459417_621716893662562_8345107166144038612_n.jpg' %}" alt="hero image" class="h-full w-full object-cover block">
+         <div class="hero-image absolute inset-0">
+           <img src="{% static 'img/474459417_621716893662562_8345107166144038612_n.jpg' %}" alt="hero image" class="h-full w-full object-cover block">
+          {% comment %} <img src="{% static 'img/474459417_621716893662562_8345107166144038612_n.jpg' %}" alt="hero image" class="h-full w-full object-contain block"> {% endcomment %}
        <div class="absolute left-0 top-0 h-full w-32 lg:w-48"
          style="background: linear-gradient(to right, rgba(11,11,11,0.95), rgba(11,11,11,0)); pointer-events:none;"></div>
   </div>
@@ -41,14 +42,14 @@
 
         <!-- TEXT 1 -->
         <div class="hero-text-slide">
-              <h1 class="hero-title is-active text-asian-red mb-6 text-4xl md:text-5xl lg:text-6xl  leading-tight">Experience<br>the Taste of Asia
+              <h1 class="hero-title  text-asian-red mb-6 text-4xl md:text-5xl lg:text-6xl  leading-tight">Experience<br>the Taste of Asia
           </h1>
           <p class="text-white/80 mb-8">
             Savor our authentic dishes crafted with fresh ingredients and
             traditional recipes.
           </p>
           <a href="#favorites"
-             class="inline-block bg-asian-red text-white px-6 py-3 rounded-full">
+             class="js-scroll inline-block bg-asian-red text-white px-6 py-3 rounded-full">
             Discover our menu
           </a>
         </div>
@@ -63,7 +64,7 @@
             techniques for perfect texture and taste.
           </p>
           <a href="#favorites"
-             class="inline-block border border-asian-red text-asian-red px-6 py-3 rounded-full hover:bg-asian-red hover:text-white transition">
+             class="js-scroll inline-block border border-asian-red text-asian-red px-6 py-3 rounded-full hover:bg-asian-red hover:text-white transition">
             See our signature dishes
           </a>
         </div>
@@ -78,7 +79,7 @@
 
 
 <!-- ================= SIGNATURE DISHES ================= -->
-<section id="favorites" class="bg-page-beige py-24">
+<section id="favorites" class="bg-page-beige py-12">
   <div class="max-w-6xl mx-auto px-6">
 
     <!-- Heading -->
@@ -86,7 +87,7 @@
       <h2 class="text-3xl font-display mb-4" style="color:var(--asian-red)">
         Signature Dishes
       </h2>
-      <p class="text-gray-600 max-w-xl mx-auto">
+      <p class="fade-in text-gray-600 max-w-xl mx-auto" style="--delay: 0.3s">
        A curated selection of dishes that represent the heart of our kitchen.
       </p>
     </div>
@@ -147,26 +148,26 @@
   {{ block.super }}
 </section>
 <!-- ================= CORE VALUES ================= -->
-<section class="bg-page-beige py-24">
+<section class="bg-page-beige py-6">
 {% comment %} <section class="page-beige-bg"> {% endcomment %}
-  <div class="max-w-6xl mx-auto px-6 py-16">
-    <h2 class="values-title text-center mb-10" style="color:var(--asian-red)">Our Core Values</h2>
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <h2 class="text-3xl text-center font-display mb-4" style="color:var(--asian-red)">Our Core Values</h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 items-start text-center">
+    <div class="fade-in2 grid grid-cols-1 sm:grid-cols-3 gap-8 items-start text-center"  style="--delay: 0s" >
       <div class="px-6">
         <img src="{% static 'img/icon-authentic.png' %}" class="mx-auto h-12 mb-4" alt="authentic">
         <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Authentic Recipes</h3>
         <p class="text-sm text-gray-700 max-w-xs mx-auto">We cook the dishes we grew up with – honest, traditional and full of flavor.</p>
       </div>
 
-      <div class="px-6 border-l border-r border-panel-divider">
+      <div class="fade-in2 px-6 border-l border-r border-panel-divider" style="--delay: 0.5s">
         <img src="{% static 'img/icon-fresh.png' %}" class="mx-auto h-12 mb-4" alt="fresh">
         <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Fresh Ingredients</h3>
         <p class="text-sm text-gray-700 max-w-xs mx-auto">Every morning we select fresh produce and prepare everything from scratch.</p>
       </div>
 
-      <div class="px-6">
-        <img src="{% static 'img/icon-service.png' %}" class="mx-auto h-12 mb-4" alt="service">
+      <div class="fade-in2 px-6" style="--delay: 1s">
+        <img src="{% static 'img/icon-service.png' %}" class="mx-auto h-12 mb-4" alt="service"  >
         <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Exceptional Service</h3>
         <p class="text-sm text-gray-700 max-w-xs mx-auto">We want you to feel relaxed, welcome and at home every time you visit.</p>
       </div>
@@ -188,10 +189,10 @@
 
   <div class="relative z-10 max-w-6xl mx-auto px-6">
     <div class="max-w-xl text-white">
-      <h2 class="text-4xl font-display mb-6">
+      <h2 class="text-4xl text-center font-display mb-6">
         More Than a Meal
       </h2>
-      <p class="text-white/90 leading-relaxed">
+      <p class="fade-in text-white/90 text-center leading-relaxed" style="--delay: 0.5s">
         Our restaurant was created as a place where authentic Asian flavors meet
         a calm, welcoming atmosphere.
       </p>
@@ -203,33 +204,34 @@
 <!-- ================= FOUNDERS ================= -->
 
 <!-- FOUNDERS -->
-<section id="founders" class="bg-page-beige">
+<section id="founders" class="js-scroll bg-page-beige">
   <div class="max-w-6xl mx-auto px-6 py-12">
     <h2 class="text-3xl font-display text-center mb-6" style="color:var(--asian-red)">From the Founders</h2>
     <div class="max-w-3xl mx-auto text-center">
-      <p class="founder-quote mb-6">“We are passionate about sharing the rich culinary heritage of Asia with our community. Our mission is to create a warm and welcoming atmosphere where every guest feels like family and leaves with unforgettable memories.”</p>
+      <p class="fade-in founder-quote mb-6" style="--delay: 0.5s">“We are passionate about sharing the rich culinary heritage of Asia with our community. Our mission is to create a warm and welcoming atmosphere where every guest feels like family and leaves with unforgettable memories.”</p>
       <div class="flex justify-center gap-12 mt-10 founders-row">
 
   <!-- Founder 1 -->
   <div class="text-center founder">
-    <img src="{% static 'img/founder-1.jpg' %}"
+    <img src="{% static 'img/mrmanh.png' %}"
          alt="Founder"
          class="founder-photo rounded-full mx-auto">
-    <h4 class="mt-4 text-lg font-semibold">Jason Chen</h4>
+    <h4 class="mt-4 text-lg font-semibold">Mr. Manh</h4>
   </div>
 
   <!-- Founder 2 -->
   <div class="text-center founder">
-    <img src="{% static 'img/female_foundr.png' %}"
+    <img src="{% static 'img/mrshuong.png' %}"
          alt="Founder"
          class="founder-photo rounded-full mx-auto">
-    <h4 class="mt-4 text-lg font-semibold">Emily Wong</h4>
+    <h4 class="mt-4 text-lg font-semibold">Mrs Huong</h4>
   </div>
 
 
 
 <!-- MODAL + HERO JS -->
 {% include "partials/menu_modal.html" %}
-{% include "partials/hero.html" %}
+{% include "partials/hero.js" %}
+
 
 {% endblock %}

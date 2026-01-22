@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{% block title %}Asian Restaurant{% endblock %}</title>
+  <title>{% block title %}Boong Restaurant - Vinohrady{% endblock %}</title>
 
   <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -19,11 +19,7 @@
   </style> {% endcomment %}
 </head>
 
-<style>
-  html {
-    scroll-behavior: smooth;
-  }
-</style>
+
 <body class="bg-page-beige text-gray-800 antialiased">
 
   <!-- HEADER -->
@@ -52,11 +48,11 @@
 
   <!-- 🔹 Social -->
   <div class="text-center mb-20">
-    <p class="text-sm text-gray-400">
+    <p class="text-sm text-gray-400  mb-6" >
       Find news & updates on our
     </p>
-    <p class="text-xl font-semibold">
-      Instagram and Facebook.
+    <p class="text-3xl font-semibold">
+      Instagram and  <a href='https://www.facebook.com/boongrestaurant.cz/'>Facebook</a>.
     </p>
   </div>
 
@@ -67,11 +63,11 @@
       <!-- Opening hours -->
       <div>
         <h3 class="mb-4 font-semibold">Opening hours</h3>
-        <p class="text-sm text-gray-300 leading-relaxed">
-          Mon – Fri: 11:30 – 23:00<br>
-          Sat: 12:00 – 23:00<br>
-          Sun: 12:00 – 22:00<br>
-          Holidays: 12:00 – 23:00
+        <p class="text-xl text-gray-300 leading-relaxed">
+          Mon – Fri: 11:00 – 22:30<br>
+          Sat: 11:00 – 22:30<br>
+          Sun: 11:00 – 22:30<br>
+          Holidays: 11:00 – 22:30
         </p>
       </div>
 
@@ -79,20 +75,43 @@
       <div>
         <h3 class="mb-4 font-semibold">Contact</h3>
         <p class="text-sm text-gray-300 leading-relaxed">
-          Asian Restaurant<br>
-          123 Example Street<br>
-          Cityname, ZIP 12345<br>
-          Country<br><br>
-          hello@example.com<br>
-          +420 123 456 789
+          Boong Restaurant<br>
+          Budečská 816/4, 120 00 Vinohrady<br>
+          Prague<br>
+          manhthanhdat94@gmail.com<br>
+          +420 777 170 468
         </p>
+      </br>
+   
+        <a
+<a
+  href="https://maps.app.goo.gl/Bhg1Xm6hXGR4B1u18"
+  target="_blank"
+  rel="noopener"
+  class="navigate-btn">
+  📍 Open in google maps
+</a>
+
+
       </div>
 
       <!-- Map -->
       <div>
-        <h3 class="mb-4 font-semibold">Map</h3>
-        <div class="w-full h-56 rounded overflow-hidden">
+        <h3 class="text-center mb-4 font-semibold">Map</h3>
+        <div class="w-full h-full rounded overflow-hidden">
           <!-- iframe map -->
+           <div class="map-wrapper">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.1033926836362!2d14.439703477509639!3d50.073205414453156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b95cd5e316f17%3A0xd12e3b08928d6f71!2sBoong%20Restaurant!5e0!3m2!1sen!2scz!4v1768430578834!5m2!1sen!2scz"
+    width="100%"
+    height="100%"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
         </div>
       </div>
 
@@ -101,7 +120,7 @@
 
   <!-- 🔹 Bottom -->
   <div class="text-center text-sm text-gray-500 mt-20 pb-10">
-    © 2025 Asian Restaurant — All rights reserved.<br>
+    © 2025 Boong Restaurant — All rights reserved.<br>
     <a href="#" class="underline">Privacy</a> · <a href="#" class="underline">Terms</a>
   </div>
 
@@ -110,4 +129,6 @@
 
 
 </body>
+{% include "partials/smooth_scroll.js" %}
+{% include "partials/intersection_obs.js" %}
 </html>
