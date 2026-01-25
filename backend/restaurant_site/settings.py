@@ -23,14 +23,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-27^88y2_5vd$&3^ha-tqg1r&1u$z3i^+@imy$&m%cp%&o8w%$e"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+if not SECRET_KEY:
+    raise RuntimeError("DJANGO_SECRET_KEY is not set")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-SECRET_KEY = os.getenv('SECRET_KEY','dev-secret-key')
-DEBUG = os.getenv('DEBUG','True') == 'True'
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS','127.0.0.1,localhost').split(',')
+#SECRET_KEY = os.getenv('SECRET_KEY','dev-secret-key')
+# DEBUG = os.getenv('DEBUG','True') == 'True'
+ALLOWED_HOSTS = [
+    "boongrestaurant.cz",
+    "www.http://boongrestaurant.cz",
+    "46.225.15.13",  # keep IP for testing
+]
 
 
 # Application definition
@@ -84,7 +91,7 @@ DATABASES = {
         "NAME": "restaurant_db",
         "USER": "restaurant_user",
         # "PASSWORD": "NOVESILNEHESLO",
-        "PASSWORD": "test1234",
+        "PASSWORD": "VRIvO4AoDx4uRv",
         #  "PASSWORD": "strongpassword",
         "HOST": "localhost",
         "PORT": "5432",
@@ -126,7 +133,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / 'api' / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'   # for collectstatic later
 MEDIA_URL = '/media/'
