@@ -33,11 +33,7 @@ if not SECRET_KEY:
 
 #SECRET_KEY = os.getenv('SECRET_KEY','dev-secret-key')
 # DEBUG = os.getenv('DEBUG','True') == 'True'
-ALLOWED_HOSTS = [
-    "boongrestaurant.cz",
-    "www.http://boongrestaurant.cz",
-    "46.225.15.13",  # keep IP for testing
-]
+
 
 
 # Application definition
@@ -88,13 +84,11 @@ WSGI_APPLICATION = "restaurant_site.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "restaurant_db",
-        "USER": "restaurant_user",
-        # "PASSWORD": "NOVESILNEHESLO",
-        "PASSWORD": "VRIvO4AoDx4uRv",
-        #  "PASSWORD": "strongpassword",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": os.environ.get("POSTGRES_DB"),
+        "USER": os.environ.get("POSTGRES_USER"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
+        "HOST": os.environ.get("POSTGRES_HOST"),
+        "PORT": os.environ.get("POSTGRES_PORT", "5432"),
     }
 }
 # DATABASES = {
