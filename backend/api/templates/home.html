@@ -38,8 +38,8 @@
   <div class="relative z-10 max-w-7xl mx-auto h-full flex items-center">
     <div class="pl-6 lg:pl-24 max-w-xl">
 
-      <div id="hero-text-slides">
-
+      <div id="hero-text-slides" class="pt-[20vh]">
+{% comment %} <h1 style="color:red;font-size:60px;">TEST HERO</h1> {% endcomment %}
         <!-- TEXT 1 -->
         <div class="hero-text-slide">
               <h1 class="hero-title  text-asian-red mb-6 text-4xl md:text-5xl lg:text-6xl  leading-tight">Experience<br>the Taste of Asia
@@ -129,7 +129,7 @@
                   {{ item.name }}
                 </h3>
                 {% if item.description %}
-                  <p class="text-sm opacity-90 line-clamp-3">
+                  <p class="opacity-90 line-clamp-3">
                     {{ item.description }}
                   </p>
                 {% endif %}
@@ -157,19 +157,19 @@
       <div class="px-6">
         <img src="{% static 'img/icon-authentic.png' %}" class="mx-auto h-12 mb-4" alt="authentic">
         <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Authentic Recipes</h3>
-        <p class="text-sm text-gray-700 max-w-xs mx-auto">We cook the dishes we grew up with – honest, traditional and full of flavor.</p>
+        <p class="text-gray-700 max-w-xs mx-auto">We cook the dishes we grew up with – honest, traditional and full of flavor.</p>
       </div>
 
       <div class="fade-in2 px-6 border-l border-r border-panel-divider" style="--delay: 0.5s">
         <img src="{% static 'img/icon-fresh.png' %}" class="mx-auto h-12 mb-4" alt="fresh">
         <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Fresh Ingredients</h3>
-        <p class="text-sm text-gray-700 max-w-xs mx-auto">Every morning we select fresh produce and prepare everything from scratch.</p>
+        <p class="text-gray-700 max-w-xs mx-auto">Every morning we select fresh produce and prepare everything from scratch.</p>
       </div>
 
       <div class="fade-in2 px-6" style="--delay: 1s">
         <img src="{% static 'img/icon-service.png' %}" class="mx-auto h-12 mb-4" alt="service"  >
         <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Exceptional Service</h3>
-        <p class="text-sm text-gray-700 max-w-xs mx-auto">We want you to feel relaxed, welcome and at home every time you visit.</p>
+        <p class="text-gray-700 max-w-xs mx-auto">We want you to feel relaxed, welcome and at home every time you visit.</p>
       </div>
     </div>
   </div>
