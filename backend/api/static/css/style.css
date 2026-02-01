@@ -383,16 +383,16 @@ footer {
 /* HERO SLIDER ANIMATION – FINAL FIX */
 
 /* base state */
-.hero-text-slide,
 .hero-image {
   position: absolute;
   inset: 0;
+}
+
+.hero-text-slide {
+  position: relative; /* ← KLÍČOVÉ */
   opacity: 0;
-  transform: translateY(12px) scale(1.02);
-  transition:
-    opacity 0.9s ease,
-    transform 0.9s ease;
-  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
 /* active state */
