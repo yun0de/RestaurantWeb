@@ -741,6 +741,10 @@ video {
   min-height: 70vh;
 }
 
+.min-h-\[50vh\]{
+  min-height: 50vh;
+}
+
 .w-12{
   width: 3rem;
 }
@@ -1009,6 +1013,10 @@ video {
 
 .pt-24{
   padding-top: 6rem;
+}
+
+.pt-\[20vh\]{
+  padding-top: 20vh;
 }
 
 .text-center{
