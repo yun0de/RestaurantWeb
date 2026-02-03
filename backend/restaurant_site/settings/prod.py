@@ -7,3 +7,5 @@ ALLOWED_HOSTS = [
     "www.http://boongrestaurant.cz",
     "46.225.15.13",  # keep IP for testing
 ]
+
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"

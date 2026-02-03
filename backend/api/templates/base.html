@@ -26,15 +26,15 @@
   <header class="bg-hero-black sticky top-0 z-50 bg-black transition-shadow">
     <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3">
-        <img src="{% static 'img/logo.png' %}" alt="Asian Restaurant" class="h-8 w-auto">
-        <span class="hidden sm:inline font-display text-asian-red font-semibold">Asian Restaurant</span>
+        <img src="{% static 'img/boong_logo.png' %}" alt="Asian Restaurant" class="h-14 h-14">
+        <span class="text-asian-red text-base md:text-lg lg:text-xl font-semibold">Boong Restaurant</span>
       </a>
       <nav class="text-white text-sm">
         <a href="{% url 'home' %}"class="px-4 hover:underline">Home</a>
-        <a href="#favorites" class="px-4 hover:underline">Favorite picks</a>
-        <a href="#founders" class="px-4 hover:underline">Founders</a>
+        <a href="{% url 'home' %}#favorites" class="px-4 hover:underline">Favorite picks</a>
+        <a href="{% url 'home' %}#founders" class="px-4 hover:underline">Founders</a>
         <a href="{% url 'menu' %}" class="px-4 hover:underline">Menu</a>
-        <a href="/admin" class="px-4 hover:underline">Admin</a>
+        {% comment %} <a href="/admin" class="px-4 hover:underline">Admin</a> {% endcomment %}
       </nav>
     </div>
   </header>
