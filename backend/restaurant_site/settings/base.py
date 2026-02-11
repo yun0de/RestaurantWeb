@@ -91,12 +91,13 @@ DATABASES = {
         "NAME": "restaurant_db",
         "USER": "restaurant_user",
         # "PASSWORD": "NOVESILNEHESLO",
-        "PASSWORD": "VRIvO4AoDx4uRv",
+        "PASSWORD": "testujeme",
         #  "PASSWORD": "strongpassword",
         "HOST": "localhost",
         "PORT": "5432",
     }
 }
+
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.sqlite3",
