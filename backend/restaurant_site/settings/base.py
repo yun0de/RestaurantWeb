@@ -33,11 +33,7 @@ if not SECRET_KEY:
 
 #SECRET_KEY = os.getenv('SECRET_KEY','dev-secret-key')
 # DEBUG = os.getenv('DEBUG','True') == 'True'
-ALLOWED_HOSTS = [
-    "boongrestaurant.cz",
-    "www.http://boongrestaurant.cz",
-    "46.225.15.13",  # keep IP for testing
-]
+
 
 
 # Application definition

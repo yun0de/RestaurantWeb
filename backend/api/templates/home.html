@@ -4,7 +4,7 @@
 {% block content %}
 <!-- ================= HERO ================= -->
 {% comment %} <section class="relative bg-black overflow-hidden min-h-[70vh]"> {% endcomment %}
-<section id="hero" class="relative bg-hero-black text-white overflow-hidden min-h-[50vh]">
+<section id="hero" class="relative bg-hero-black text-white overflow-hidden min-h-[60vh]">
 
   <!-- RIGHT IMAGE (BACKGROUND, FULL WIDTH) -->
   <div class="absolute inset-y-0 right-0 w-[50%]">
@@ -29,6 +29,8 @@
 
     </div>
 
+
+
     <!-- GRADIENT OVER IMAGE -->
     <div class="absolute inset-y-0 left-0 w-40
                 bg-gradient-to-r from-black to-transparent"></div>
@@ -38,18 +40,18 @@
   <div class="relative z-10 max-w-7xl mx-auto h-full flex items-center">
     <div class="pl-6 lg:pl-24 max-w-xl">
 
-      <div id="hero-text-slides" class="pt-[20vh]">
+      <div id="hero-text-slides">
 {% comment %} <h1 style="color:red;font-size:60px;">TEST HERO</h1> {% endcomment %}
         <!-- TEXT 1 -->
         <div class="hero-text-slide">
-              <h1 class="hero-title  text-asian-red mb-6 text-4xl md:text-5xl lg:text-6xl  leading-tight">Experience<br>the Taste of Asia
+              <h1 class="hero-title text-asian-red mb-6 text-4xl md:text-5xl lg:text-6xl  leading-tight">Experience<br>the Taste of Asia
           </h1>
           <p class="text-white/80 mb-8">
             Savor our authentic dishes crafted with fresh ingredients and
             traditional recipes.
           </p>
-          <a href="#favorites"
-             class="js-scroll inline-block bg-asian-red text-white px-6 py-3 rounded-full">
+          <a href="{% url 'menu' %}"
+             class=" inline-block bg-asian-red text-white px-6 py-3 rounded-full">
             Discover our menu
           </a>
         </div>
