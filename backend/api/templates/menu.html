@@ -3,60 +3,101 @@
 
 {% block content %}
 <section class="menu-section">
- <div class="menu-container">
-  <h1 class="menu-title">Our Menu</h1>
-  <p class="menu-subtitle">
-    Discover our full selection of authentic Asian dishes.
-  </p>
+  <div class="menu-container">
 
-  <!-- SWITCHER -->
-  <div class="menu-toggle">
-    <button class="menu-btn active" data-target="menu-html">
-      🍜 Web version of menu
-    </button>
-    <button class="menu-btn" data-target="menu-pdf">
-      📄 Printed version of menu with pictures
-    </button>
-  </div>
+    <!-- HEADER -->
+    <h1 class="menu-title">Our Menu</h1>
+    <p class="menu-subtitle">
+      Discover our full selection of authentic Asian dishes.
+    </p>
 
-  <!-- HTML MENU -->
-  <div id="menu-html" class="menu-content">
-    <!-- Tvoje stávající menu -->
-    {% for item in items %}
-      <div class="menu-item">
-        <div>
-          <h3>{{ item.name }}</h3>
-          <p>{{ item.description }}</p>
+    <!-- TOGGLE BUTTONS -->
+    <div class="menu-toggle">
+      <button class="menu-btn active" data-target="menu-html">
+        🍜 Web version of menu
+      </button>
+      <button class="menu-btn" data-target="menu-pdf">
+        📄 Printed version of menu with pictures
+      </button>
+    </div>
+
+    <!-- ========================= -->
+    <!-- HTML MENU (DYNAMIC) -->
+    <!-- ========================= -->
+    <div id="menu-html" class="menu-content">
+
+      {% for category in categories %}
+        {% if category.items.all %}
+        <div class="menu-category-block">
+
+          <h2 class="menu-category-title">
+            {{ category.name }}
+          </h2>
+
+          {% for item in category.items.all %}
+            <div class="menu-item">
+              <div class="menu-item-left">
+                <h3 class="menu-item-name">
+                  {{ item.name }}
+                </h3>
+
+                {% if item.description %}
+                  <p class="menu-item-description">
+                    {{ item.description }}
+                  </p>
+                {% endif %}
+              </div>
+
+              <div class="menu-item-right">
+                <span class="price">
+                  {{ item.formatted_price }}
+                </span>
+              </div>
+            </div>
+          {% endfor %}
+
         </div>
-        <span class="price">{{ item.price }} Kč</span>
-      </div>
-    {% endfor %}
-  </div>
+        {% endif %}
+      {% empty %}
+        <p>No menu items available.</p>
+      {% endfor %}
 
-  <!-- PDF / IMAGE MENU -->
-  <div id="menu-pdf" class="menu-content hidden">
-   <img src="{% static 'img/menu/page_01.jpg' %}" alt="Menu page 1">
-   <img src="{% static 'img/menu/page_02.jpg' %}" alt="Menu page 2"> 
-   <img src="{% static 'img/menu/page_03.jpg' %}" alt="Menu page 3">
-   <img src="{% static 'img/menu/page_04.jpg' %}" alt="Menu page 4"> 
-   <img src="{% static 'img/menu/page_05.jpg' %}" alt="Menu page 5">
-   <img src="{% static 'img/menu/page_06.jpg' %}" alt="Menu page 6"> 
-   <img src="{% static 'img/menu/page_07.jpg' %}" alt="Menu page 7">
-   <img src="{% static 'img/menu/page_08.jpg' %}" alt="Menu page 8"> 
-   <img src="{% static 'img/menu/page_09.jpg' %}" alt="Menu page 9">
-   <img src="{% static 'img/menu/page_10.jpg' %}" alt="Menu page 10"> 
-   <img src="{% static 'img/menu/page_11.jpg' %}" alt="Menu page 11">
-   <img src="{% static 'img/menu/page_12.jpg' %}" alt="Menu page 12"> 
-   <img src="{% static 'img/menu/page_13.jpg' %}" alt="Menu page 13">
-   <img src="{% static 'img/menu/page_14.jpg' %}" alt="Menu page 14"> 
-   <img src="{% static 'img/menu/page_15.jpg' %}" alt="Menu page 15">
-   <img src="{% static 'img/menu/page_16.jpg' %}" alt="Menu page 16"> 
-   <img src="{% static 'img/menu/page_17.jpg' %}" alt="Menu page 17">
-   <img src="{% static 'img/menu/page_18.jpg' %}" alt="Menu page 18"> 
-   <img src="{% static 'img/menu/page_19.jpg' %}" alt="Menu page 19">
-   <img src="{% static 'img/menu/page_20.jpg' %}" alt="Menu page 20"> 
-  </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- PDF / IMAGE MENU -->
+    <!-- ========================= -->
+    <div id="menu-pdf" class="menu-content hidden">
+
+      {% for i in "123456789"|make_list %}
+      {% endfor %}
+
+      <img src="{% static 'img/menu/page_01.jpg' %}" alt="Menu page 1">
+      <img src="{% static 'img/menu/page_02.jpg' %}" alt="Menu page 2">
+      <img src="{% static 'img/menu/page_03.jpg' %}" alt="Menu page 3">
+      <img src="{% static 'img/menu/page_04.jpg' %}" alt="Menu page 4">
+      <img src="{% static 'img/menu/page_05.jpg' %}" alt="Menu page 5">
+      <img src="{% static 'img/menu/page_06.jpg' %}" alt="Menu page 6">
+      <img src="{% static 'img/menu/page_07.jpg' %}" alt="Menu page 7">
+      <img src="{% static 'img/menu/page_08.jpg' %}" alt="Menu page 8">
+      <img src="{% static 'img/menu/page_09.jpg' %}" alt="Menu page 9">
+      <img src="{% static 'img/menu/page_10.jpg' %}" alt="Menu page 10">
+      <img src="{% static 'img/menu/page_11.jpg' %}" alt="Menu page 11">
+      <img src="{% static 'img/menu/page_12.jpg' %}" alt="Menu page 12">
+      <img src="{% static 'img/menu/page_13.jpg' %}" alt="Menu page 13">
+      <img src="{% static 'img/menu/page_14.jpg' %}" alt="Menu page 14">
+      <img src="{% static 'img/menu/page_15.jpg' %}" alt="Menu page 15">
+      <img src="{% static 'img/menu/page_16.jpg' %}" alt="Menu page 16">
+      <img src="{% static 'img/menu/page_17.jpg' %}" alt="Menu page 17">
+      <img src="{% static 'img/menu/page_18.jpg' %}" alt="Menu page 18">
+      <img src="{% static 'img/menu/page_19.jpg' %}" alt="Menu page 19">
+      <img src="{% static 'img/menu/page_20.jpg' %}" alt="Menu page 20">
+
+    </div>
+
   </div>
 </section>
+
 {% include "partials/menu_switch.js" %}
+
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Restaurant, MenuItem
+from .models import Restaurant, MenuItem, MenuCategory
 
 def home(request):
     featured_items = MenuItem.objects.filter(is_featured=True)[:6]
@@ -16,7 +16,8 @@ def reservations(request):
 
 
 def menu_page(request):
-    items = MenuItem.objects.all().order_by("name")
+    # items = MenuItem.objects.all().order_by("name")
+    categories = MenuCategory.objects.prefetch_related("items").all()
     return render(request, "menu.html", {
-        "items": items
+        "categories": categories
     })

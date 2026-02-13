@@ -12,12 +12,15 @@ class Restaurant(models.Model):
 class MenuCategory(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='categories')
     name = models.CharField(max_length=100)
+    name_alternative = models.CharField(max_length=100, blank=True)
     def __str__(self): return self.name
 
 class MenuItem(models.Model):
     category = models.ForeignKey(MenuCategory, on_delete=models.CASCADE, related_name='items')
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
+    name_alternative = models.CharField(max_length=200, blank=True)
+    description_alternative = models.TextField(blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     photo = models.ImageField(upload_to='menu_items/', null=True, blank=True)
     is_featured = models.BooleanField(default=False)

@@ -476,6 +476,19 @@ section {
   gap: 12px;
   margin: 32px 0;
 }
+.menu-category-block {
+  margin-top: 60px;
+}
+
+.menu-category-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #d32f2f;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
 .menu-btn {
   padding: 10px 18px;
