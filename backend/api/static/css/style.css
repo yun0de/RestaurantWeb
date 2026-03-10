@@ -559,6 +559,22 @@ section {
   border-bottom: none;
 }
 
+.menu-variant-list {
+  min-width: 220px;
+}
+
+.menu-variant-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 2px 0;
+}
+
+.menu-variant-name {
+  color: #444;
+}
+
 .menu-item-text h3 {
   margin: 0 0 6px;
   font-size: 1.1rem;

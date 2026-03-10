@@ -42,6 +42,8 @@
 
       <div id="modalDescription"
            class="text-gray-700 leading-relaxed whitespace-pre-line"></div>
+
+      <div id="modalVariants" class="mt-4 space-y-2 hidden"></div>
     </div>
   </div>
 </div>
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const titleEl = document.getElementById('modalTitle');
   const descEl = document.getElementById('modalDescription');
   const priceEl = document.getElementById('modalPrice');
+  const variantsEl = document.getElementById('modalVariants');
 
   let lastFocused = null;
 
@@ -65,6 +68,26 @@ document.addEventListener('DOMContentLoaded', () => {
     titleEl.textContent = button.dataset.title || '';
     priceEl.textContent = button.dataset.price || '';
     descEl.innerHTML = button.dataset.description || '';
+
+    const variantsRaw = button.dataset.variants || '';
+    const variants = variantsRaw
+      .split(';')
+      .map((entry) => entry.trim())
+      .filter(Boolean);
+
+    variantsEl.innerHTML = '';
+    if (variants.length > 0) {
+      variants.forEach((variantEntry) => {
+        const [name, price] = variantEntry.split('|');
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between border-b border-gray-200 pb-1';
+        row.innerHTML = `<span class="font-medium text-gray-800">${name || ''}</span><span class="text-asian-red font-semibold">${price || ''}</span>`;
+        variantsEl.appendChild(row);
+      });
+      variantsEl.classList.remove('hidden');
+    } else {
+      variantsEl.classList.add('hidden');
+    }
 
     modalWrap.classList.remove('hidden');
     modalWrap.classList.add('flex');

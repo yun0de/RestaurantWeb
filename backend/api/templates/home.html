@@ -109,7 +109,8 @@
               aria-label="View {{ item.name }}"
               data-title="{{ item.name|escapejs }}"
               data-description="{{ item.description|default:''|escapejs }}"
-              data-price="{% if item.formatted_price %}{{ item.formatted_price|escapejs }}{% elif item.price %}{{ item.price }} Kč{% endif %}"
+              data-price="{% if item.price_summary %}{{ item.price_summary|escapejs }}{% endif %}"
+              data-variants="{% for variant in item.variants.all %}{{ variant.name|escapejs }}|{{ variant.formatted_price|escapejs }}{% if not forloop.last %};{% endif %}{% endfor %}"
               data-image="{% if item.photo %}{{ item.photo.url }}{% else %}{% static 'img/menu-placeholder.jpg' %}{% endif %}"
               style="border:0; padding:0; background:transparent;"
             >

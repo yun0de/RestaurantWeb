@@ -1,12 +1,27 @@
 from django.contrib import admin
-from .models import Restaurant, MenuCategory, MenuItem, Reservation
+from .models import Restaurant, MenuCategory, MenuItem, MenuItemVariant, Reservation
 
 admin.site.register(Restaurant)
 admin.site.register(MenuCategory)
 admin.site.register(Reservation)
 
+class MenuItemVariantInline(admin.TabularInline):
+    model = MenuItemVariant
+    extra = 1
+    fields = ("name", "price", "sort_order")
+    ordering = ("sort_order", "id")
+
+
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
-    list_display = ("name", "price", "is_featured")
+    list_display = ("name", "price_summary", "is_featured")
     list_filter = ("is_featured",)
-    search_fields = ("name", "description")
+    search_fields = ("name", "description", "variants__name")
+    inlines = [MenuItemVariantInline]
+
+
+@admin.register(MenuItemVariant)
+class MenuItemVariantAdmin(admin.ModelAdmin):
+    list_display = ("menu_item", "name", "price", "sort_order")
+    list_filter = ("menu_item__category",)
+    search_fields = ("menu_item__name", "name")

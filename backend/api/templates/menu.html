@@ -49,9 +49,20 @@
               </div>
 
               <div class="menu-item-right">
-                <span class="price">
-                  {{ item.formatted_price }}
-                </span>
+                {% if item.variants.all %}
+                  <div class="menu-variant-list">
+                    {% for variant in item.variants.all %}
+                      <div class="menu-variant-row">
+                        <span class="menu-variant-name">{{ variant.name }}</span>
+                        <span class="price">{{ variant.formatted_price }}</span>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  <span class="price">
+                    {{ item.formatted_price }}
+                  </span>
+                {% endif %}
               </div>
             </div>
           {% endfor %}
