@@ -16,7 +16,8 @@ from dotenv import load_dotenv
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parents[2]
+load_dotenv(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
@@ -84,13 +85,11 @@ WSGI_APPLICATION = "restaurant_site.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "restaurant_db",
-        "USER": "restaurant_user",
-        # "PASSWORD": "NOVESILNEHESLO",
-        "PASSWORD": "testujeme",
-        #  "PASSWORD": "strongpassword",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": os.environ.get("DB_NAME", "restaurant_db"),
+        "USER": os.environ.get("DB_USER", "restaurant_user"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "testujeme"),
+        "HOST": os.environ.get("DB_HOST", "localhost"),
+        "PORT": os.environ.get("DB_PORT", "5432"),
     }
 }
 
@@ -131,7 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR.parent / 'api' / 'static']
+STATICFILES_DIRS = [BASE_DIR / 'api' / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'   # for collectstatic later
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
