@@ -15,13 +15,13 @@
            style="background-image:url('{% static "img/hero-extended.jpg" %}')">
       </div> {% endcomment %}
       <div class="hero-image absolute inset-0">
-          <img src="{% static 'img/hero-extended.jpg' %}" alt="hero image" class="h-full w-full object-cover block">
+          <img src="{% static 'img/hero-extended.jpg' %}" alt="hero image" class="h-full w-full object-cover block" fetchpriority="high" decoding="async">
        <div class="absolute left-0 top-0 h-full w-32 lg:w-48"
          style="background: linear-gradient(to right, rgba(11,11,11,0.95), rgba(11,11,11,0)); pointer-events:none;"></div>
   </div>
       <!-- IMAGE 2 -->
          <div class="hero-image absolute inset-0">
-           <img src="{% static 'img/474459417_621716893662562_8345107166144038612_n.jpg' %}" alt="hero image" class="h-full w-full object-cover block">
+           <img src="{% static 'img/474459417_621716893662562_8345107166144038612_n.jpg' %}" alt="hero image" class="h-full w-full object-cover block" loading="lazy" decoding="async">
           {% comment %} <img src="{% static 'img/474459417_621716893662562_8345107166144038612_n.jpg' %}" alt="hero image" class="h-full w-full object-contain block"> {% endcomment %}
        <div class="absolute left-0 top-0 h-full w-32 lg:w-48"
          style="background: linear-gradient(to right, rgba(11,11,11,0.95), rgba(11,11,11,0)); pointer-events:none;"></div>
@@ -117,6 +117,8 @@
               <img
                 src="{% if item.photo %}{{ item.photo.url }}{% else %}{% static 'img/menu-placeholder.jpg' %}{% endif %}"
                 alt="{{ item.name }}"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               >
             </button>
@@ -158,19 +160,19 @@
 
     <div class="fade-in2 grid grid-cols-1 sm:grid-cols-3 gap-8 items-start text-center"  style="--delay: 0s" >
       <div class="px-6">
-        <img src="{% static 'img/icon-authentic.png' %}" class="mx-auto h-12 mb-4" alt="authentic">
+        <img src="{% static 'img/icon-authentic.png' %}" class="mx-auto h-12 mb-4" alt="authentic" loading="lazy" decoding="async">
         <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Authentic Recipes</h3>
         <p class="text-gray-700 max-w-xs mx-auto">We cook the dishes we grew up with – honest, traditional and full of flavor.</p>
       </div>
 
       <div class="fade-in2 px-6 border-l border-r border-panel-divider" style="--delay: 0.5s">
-        <img src="{% static 'img/icon-fresh.png' %}" class="mx-auto h-12 mb-4" alt="fresh">
+        <img src="{% static 'img/icon-fresh.png' %}" class="mx-auto h-12 mb-4" alt="fresh" loading="lazy" decoding="async">
         <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Fresh Ingredients</h3>
         <p class="text-gray-700 max-w-xs mx-auto">Every morning we select fresh produce and prepare everything from scratch.</p>
       </div>
 
       <div class="fade-in2 px-6" style="--delay: 1s">
-        <img src="{% static 'img/icon-service.png' %}" class="mx-auto h-12 mb-4" alt="service"  >
+        <img src="{% static 'img/icon-service.png' %}" class="mx-auto h-12 mb-4" alt="service" loading="lazy" decoding="async">
         <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Exceptional Service</h3>
         <p class="text-gray-700 max-w-xs mx-auto">We want you to feel relaxed, welcome and at home every time you visit.</p>
       </div>
@@ -185,6 +187,8 @@
   <img
     src="{% static 'img/restaurant-interior.jpg' %}"
     alt="Restaurant atmosphere"
+    loading="lazy"
+    decoding="async"
     class="absolute inset-0 w-full h-full object-cover"
   >
 
@@ -218,6 +222,8 @@
   <div class="text-center founder">
     <img src="{% static 'img/mrmanh.png' %}"
          alt="Founder"
+         loading="lazy"
+         decoding="async"
          class="founder-photo rounded-full mx-auto">
     <h4 class="mt-4 text-lg font-semibold">Mr. Manh</h4>
   </div>
@@ -226,6 +232,8 @@
   <div class="text-center founder">
     <img src="{% static 'img/mrshuong.png' %}"
          alt="Founder"
+         loading="lazy"
+         decoding="async"
          class="founder-photo rounded-full mx-auto">
     <h4 class="mt-4 text-lg font-semibold">Mrs Huong</h4>
   </div>
