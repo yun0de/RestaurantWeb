@@ -21,9 +21,14 @@ class MenuItem(models.Model):
     description = models.TextField(blank=True)
     name_alternative = models.CharField(max_length=200, blank=True)
     description_alternative = models.TextField(blank=True)
+    sort_order = models.PositiveIntegerField(default=0)
     price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
     photo = models.ImageField(upload_to='menu_items/', null=True, blank=True)
     is_featured = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ("sort_order", "id")
+
     def __str__(self): return self.name
 
     def formatted_price(self):

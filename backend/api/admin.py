@@ -14,9 +14,11 @@ class MenuItemVariantInline(admin.TabularInline):
 
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
-    list_display = ("name", "price_summary", "is_featured")
-    list_filter = ("is_featured",)
+    list_display = ("name", "category", "sort_order", "price_summary", "is_featured")
+    list_filter = ("category", "is_featured")
     search_fields = ("name", "description", "variants__name")
+    list_editable = ("sort_order",)
+    ordering = ("category", "sort_order", "id")
     inlines = [MenuItemVariantInline]
 
 
