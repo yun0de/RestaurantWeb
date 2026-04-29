@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="owner-login-page">
+  <form method="post" class="owner-card owner-login-card">
+    {% csrf_token %}
+    <p class="owner-kicker">Hidden owner access</p>
+    <h1>Log in</h1>
+    {{ form.non_field_errors }}
+    <label>
+      Username
+      {{ form.username }}
+      {{ form.username.errors }}
+    </label>
+    <label>
+      Password
+      {{ form.password }}
+      {{ form.password.errors }}
+    </label>
+    <button type="submit" class="owner-primary">Enter owner panel</button>
+  </form>
+</section>
+{% endblock %}

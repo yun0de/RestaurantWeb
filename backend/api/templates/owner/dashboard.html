@@ -1,0 +1,26 @@
+{% extends "owner/base_owner.html" %}
+
+{% block owner_content %}
+<div class="owner-page-heading">
+  <div>
+    <p class="owner-kicker">Restaurant</p>
+    <h1>Website settings</h1>
+  </div>
+  <div class="owner-stats">
+    <span>{{ featured_count }} active signatures</span>
+    <span>{{ inactive_count }} hidden items</span>
+  </div>
+</div>
+
+<form method="post" class="owner-card owner-form-grid">
+  {% csrf_token %}
+  {% for field in form %}
+    <label>
+      {{ field.label }}
+      {{ field }}
+      {{ field.errors }}
+    </label>
+  {% endfor %}
+  <button type="submit" class="owner-primary">Save settings</button>
+</form>
+{% endblock %}

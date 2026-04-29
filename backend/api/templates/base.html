@@ -38,9 +38,12 @@
         <a href="{% url 'menu' %}" class="nav-link">{% trans "Our Menu" %}</a>
         <a href="{% url 'home' %}#founders" class="nav-link">{% trans "Family Story" %}</a>
         <a href="{% url 'home' %}#visit" class="nav-link">Vinohrady</a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'owner_dashboard' %}" class="nav-link">{% trans "Admin" %}</a>
+        {% endif %}
       </nav>
       <div class="flex items-center gap-4">
-        <a href="tel:+420777170468" class="hidden text-sm text-boong-ink/70 hover:text-boong-ink lg:inline-flex">+420 777 170 468</a>
+        <a href="tel:{{ site_contact_phone_href }}" class="hidden text-sm text-boong-ink/70 hover:text-boong-ink lg:inline-flex">{{ site_contact_phone }}</a>
         <form action="{% url 'set_language' %}" method="post" class="language-switcher" aria-label="{% trans 'Language switcher' %}">
           {% csrf_token %}
           <input name="next" type="hidden" value="{{ request.get_full_path }}">
@@ -71,25 +74,19 @@
       <h3 class="footer-kicker">{% trans "Visit Us" %}</h3>
       <p class="mt-6 leading-relaxed text-boong-ivory/80">
         <strong class="font-medium text-boong-ivory">Boong Restaurant</strong><br>
-        Budečská 816/4<br>
-        120 00 Praha 2, Vinohrady<br>
-        Czech Republic
+        {{ site_address|linebreaksbr }}
       </p>
       <div class="mt-6 space-y-2 text-boong-ivory/70">
-        <a href="tel:+420777170468" class="block hover:text-boong-gold">+420 777 170 468</a>
-        <a href="mailto:manhthanhdat94@gmail.com" class="block hover:text-boong-gold">manhthanhdat94@gmail.com</a>
+        <a href="tel:{{ site_contact_phone_href }}" class="block hover:text-boong-gold">{{ site_contact_phone }}</a>
+        <a href="mailto:{{ site_contact_email }}" class="block hover:text-boong-gold">{{ site_contact_email }}</a>
         <a href="https://maps.app.goo.gl/Bhg1Xm6hXGR4B1u18" target="_blank" rel="noopener" class="inline-block border-b border-boong-gold/50 pb-1 text-boong-gold hover:border-boong-ivory hover:text-boong-ivory">{% trans "Open in Google Maps" %}</a>
       </div>
     </div>
 
     <div>
       <h3 class="footer-kicker">{% trans "Opening Hours" %}</h3>
-      <ul class="mt-6 space-y-3 text-boong-ivory/75">
-        <li class="flex justify-between gap-6 border-b border-boong-ivory/10 pb-2"><span>{% trans "Mon - Fri" %}</span><span>11:00 - 22:30</span></li>
-        <li class="flex justify-between gap-6 border-b border-boong-ivory/10 pb-2"><span>{% trans "Saturday" %}</span><span>11:00 - 22:30</span></li>
-        <li class="flex justify-between gap-6 border-b border-boong-ivory/10 pb-2"><span>{% trans "Sunday" %}</span><span>11:00 - 22:30</span></li>
-      </ul>
-      <a href="tel:+420777170468" class="mt-8 block bg-boong-ivory px-6 py-3 text-center text-sm uppercase text-boong-ink transition hover:bg-boong-gold">{% trans "Call for a Reservation" %}</a>
+      <div class="mt-6 leading-relaxed text-boong-ivory/75">{{ site_opening_hours|linebreaksbr }}</div>
+      <a href="tel:{{ site_contact_phone_href }}" class="mt-8 block bg-boong-ivory px-6 py-3 text-center text-sm uppercase text-boong-ink transition hover:bg-boong-gold">{% trans "Call for a Reservation" %}</a>
     </div>
   </div>
   <div class="mx-auto max-w-[1400px] border-t border-boong-ivory/10 px-6 py-8 text-xs uppercase text-boong-ivory/40 md:px-10 lg:px-12">

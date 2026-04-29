@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="owner-shell">
+  <aside class="owner-sidebar">
+    <a href="{% url 'owner_dashboard' %}" class="owner-brand">BOONG Owner</a>
+    <nav class="owner-nav">
+      <a href="{% url 'owner_dashboard' %}">Settings</a>
+      <a href="{% url 'owner_menu' %}">Menu</a>
+      <a href="{% url 'owner_account' %}">Account</a>
+      {% if request.user.is_superuser %}
+        <a href="{% url 'owner_user_create' %}">New Owner</a>
+        <a href="{% url 'admin:index' %}">Django Admin</a>
+      {% endif %}
+    </nav>
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="owner-logout">Log out</button>
+    </form>
+  </aside>
+  <div class="owner-main">
+    {% if messages %}
+      <div class="owner-messages">
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% block owner_content %}{% endblock %}
+  </div>
+</section>
+{% endblock %}

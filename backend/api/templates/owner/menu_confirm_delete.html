@@ -1,0 +1,14 @@
+{% extends "owner/base_owner.html" %}
+
+{% block owner_content %}
+<div class="owner-card owner-login-card">
+  <p class="owner-kicker">Delete menu item</p>
+  <h1>Delete {{ item.name }}?</h1>
+  <p>This removes the item from the owner panel and public website.</p>
+  <form method="post" class="owner-delete-actions">
+    {% csrf_token %}
+    <a href="{% url 'owner_menu' %}" class="owner-secondary">Cancel</a>
+    <button type="submit" class="owner-danger">Delete</button>
+  </form>
+</div>
+{% endblock %}

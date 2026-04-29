@@ -4,6 +4,10 @@ class Restaurant(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     address = models.CharField(max_length=300, blank=True)
+    opening_hours_text_en = models.TextField(blank=True)
+    opening_hours_text_cs = models.TextField(blank=True)
+    contact_email = models.EmailField(blank=True)
+    contact_phone = models.CharField(max_length=40, blank=True)
     cover_image = models.ImageField(upload_to='restaurants/', null=True, blank=True)
 
     def __str__(self):
@@ -24,6 +28,7 @@ class MenuItem(models.Model):
     sort_order = models.PositiveIntegerField(default=0)
     price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
     photo = models.ImageField(upload_to='menu_items/', null=True, blank=True)
+    is_active = models.BooleanField(default=True)
     is_featured = models.BooleanField(default=False)
 
     class Meta:

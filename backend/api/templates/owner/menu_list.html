@@ -1,0 +1,53 @@
+{% extends "owner/base_owner.html" %}
+
+{% block owner_content %}
+<div class="owner-page-heading">
+  <div>
+    <p class="owner-kicker">Menu</p>
+    <h1>Menu items</h1>
+  </div>
+  <a href="{% url 'owner_menu_create' %}" class="owner-primary owner-link-button">New item</a>
+</div>
+
+<div class="owner-card owner-table-wrap">
+  <table class="owner-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Signature</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+        <tr>
+          <td>
+            <strong>{{ item.name }}</strong>
+            <small>{{ item.description|truncatechars:90 }}</small>
+          </td>
+          <td>{{ item.category.name }}</td>
+          <td>{{ item.price_summary }}</td>
+          <td>
+            <form method="post" action="{% url 'owner_menu_toggle_active' item.id %}">
+              {% csrf_token %}
+              <button type="submit" class="owner-pill {% if item.is_active %}is-on{% else %}is-off{% endif %}">
+                {% if item.is_active %}Active{% else %}Hidden{% endif %}
+              </button>
+            </form>
+          </td>
+          <td>{% if item.is_featured %}On{% else %}Off{% endif %}</td>
+          <td class="owner-actions">
+            <a href="{% url 'owner_menu_edit' item.id %}">Edit</a>
+            <a href="{% url 'owner_menu_delete' item.id %}">Delete</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="6">No menu items yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

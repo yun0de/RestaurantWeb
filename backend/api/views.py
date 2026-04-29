@@ -5,7 +5,7 @@ from .models import Restaurant, MenuItem, MenuCategory
 def home(request):
     featured_items = (
         MenuItem.objects
-        .filter(is_featured=True)
+        .filter(is_active=True, is_featured=True)
         .prefetch_related("variants")
         .order_by("sort_order", "id")[:6]
     )
@@ -22,7 +22,7 @@ def reservations(request):
 
 
 def menu_page(request):
-    ordered_items = MenuItem.objects.prefetch_related("variants").order_by("sort_order", "id")
+    ordered_items = MenuItem.objects.filter(is_active=True).prefetch_related("variants").order_by("sort_order", "id")
     categories = MenuCategory.objects.prefetch_related(
         Prefetch("items", queryset=ordered_items)
     ).all()

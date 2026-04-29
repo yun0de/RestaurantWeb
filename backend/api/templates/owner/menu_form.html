@@ -1,0 +1,44 @@
+{% extends "owner/base_owner.html" %}
+
+{% block owner_content %}
+<div class="owner-page-heading">
+  <div>
+    <p class="owner-kicker">Menu</p>
+    <h1>{% if item.pk %}Edit item{% else %}New item{% endif %}</h1>
+  </div>
+  <a href="{% url 'owner_menu' %}" class="owner-secondary">Back to menu</a>
+</div>
+
+<form method="post" enctype="multipart/form-data" class="owner-card owner-form-grid">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {% for field in form %}
+    <label class="{% if field.field.widget.input_type == 'checkbox' %}owner-checkbox{% endif %}">
+      {{ field.label }}
+      {{ field }}
+      {{ field.errors }}
+    </label>
+  {% endfor %}
+
+  <div class="owner-form-wide">
+    <h2>Price variants</h2>
+    {{ formset.management_form }}
+    <div class="owner-variant-grid">
+      {% for variant_form in formset %}
+        <div class="owner-variant-row">
+          {{ variant_form.id }}
+          {% for field in variant_form.visible_fields %}
+            <label>
+              {{ field.label }}
+              {{ field }}
+              {{ field.errors }}
+            </label>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <button type="submit" class="owner-primary">Save item</button>
+</form>
+{% endblock %}
