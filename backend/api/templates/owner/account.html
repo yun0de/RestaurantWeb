@@ -1,0 +1,23 @@
+{% extends "owner/base_owner.html" %}
+
+{% block owner_content %}
+<div class="owner-page-heading">
+  <div>
+    <p class="owner-kicker">Account</p>
+    <h1>Your account</h1>
+  </div>
+  <a href="{% url 'owner_password' %}" class="owner-primary owner-link-button">Change password</a>
+</div>
+
+<form method="post" class="owner-card owner-form-grid">
+  {% csrf_token %}
+  {% for field in form %}
+    <label>
+      {{ field.label }}
+      {{ field }}
+      {{ field.errors }}
+    </label>
+  {% endfor %}
+  <button type="submit" class="owner-primary">Save account</button>
+</form>
+{% endblock %}

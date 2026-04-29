@@ -1,0 +1,23 @@
+{% extends "owner/base_owner.html" %}
+
+{% block owner_content %}
+<div class="owner-page-heading">
+  <div>
+    <p class="owner-kicker">Users</p>
+    <h1>Create Owner account</h1>
+  </div>
+</div>
+
+<form method="post" class="owner-card owner-form-grid">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {% for field in form %}
+    <label>
+      {{ field.label }}
+      {{ field }}
+      {{ field.errors }}
+    </label>
+  {% endfor %}
+  <button type="submit" class="owner-primary">Create Owner</button>
+</form>
+{% endblock %}

@@ -1,88 +1,87 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 
 {% block content %}
-<section class="menu-section">
-  <div class="menu-container">
+{% get_current_language as LANGUAGE_CODE %}
+<section class="boong-menu-page bg-boong-ivory pt-32 text-boong-ink md:pt-40">
+  <div class="mx-auto max-w-[1400px] px-6 md:px-10 lg:px-12">
+    <div class="grid grid-cols-1 items-end gap-12 border-b border-boong-stone pb-14 md:grid-cols-12">
+      <div class="md:col-span-7">
+        <div class="reveal-up mb-6 flex items-center gap-4 text-sm uppercase text-boong-crimson">
+          <span class="h-px w-12 bg-boong-crimson"></span>
+          {% trans "Our Menu" %}
+        </div>
+        <h1 class="reveal-up max-w-4xl font-boong-serif text-6xl leading-none md:text-7xl lg:text-8xl" style="--delay: 0.08s">
+          {% blocktrans trimmed %}
+            Choose by craving,<br>
+            <span class="italic text-boong-crimson">then stay for more.</span>
+          {% endblocktrans %}
+        </h1>
+        <p class="reveal-up mt-8 max-w-xl text-lg leading-relaxed text-boong-ink/68" style="--delay: 0.16s">
+          {% trans "Browse the clean web menu for speed, or open the visual menu when you want to eat with your eyes first." %}
+        </p>
+      </div>
 
-    <!-- HEADER -->
-    <h1 class="menu-title">Our Menu</h1>
-    <p class="menu-subtitle">
-      Discover our full selection of authentic Asian dishes.
-    </p>
+      <div class="reveal-up menu-hero-card md:col-span-5" style="--delay: 0.2s">
+        <img src="{% static 'img/menu/page_04.jpg' %}" alt="Visual menu preview with Vietnamese dishes" loading="lazy" decoding="async">
+        <div class="menu-hero-card-label">
+          <span>{% trans "Visual menu" %}</span>
+          <strong>{% trans "Vietnamese favorites" %}</strong>
+        </div>
+      </div>
+    </div>
 
-    <!-- TOGGLE BUTTONS -->
-    <div class="menu-toggle">
-      <button class="menu-btn active" data-target="menu-html">
-        🍜 Web version of menu
+    <div class="menu-toggle boong-menu-toggle">
+      <button class="menu-btn active" data-target="menu-html" type="button">
+        {% trans "Web menu" %}
       </button>
-      <button class="menu-btn" data-target="menu-pdf">
-        📄 Printed version of menu with pictures
+      <button class="menu-btn" data-target="menu-pdf" type="button">
+        {% trans "Visual menu" %}
       </button>
     </div>
 
-    <!-- ========================= -->
-    <!-- HTML MENU (DYNAMIC) -->
-    <!-- ========================= -->
-    <div id="menu-html" class="menu-content">
-
+    <div id="menu-html" class="menu-content boong-menu-content">
       {% for category in categories %}
         {% if category.items.all %}
-        <div class="menu-category-block">
-
-          <h2 class="menu-category-title">
-            {{ category.name }}
-          </h2>
-
-          {% for item in category.items.all %}
-            <div class="menu-item">
-              <div class="menu-item-left">
-                <h3 class="menu-item-name">
-                  {{ item.name }}
-                </h3>
-
-                {% if item.description %}
-                  <p class="menu-item-description">
-                    {{ item.description }}
-                  </p>
-                {% endif %}
-              </div>
-
-              <div class="menu-item-right">
-                {% if item.variants.all %}
-                  <div class="menu-variant-list">
-                    {% for variant in item.variants.all %}
-                      <div class="menu-variant-row">
-                        <span class="menu-variant-name">{{ variant.name }}</span>
-                        <span class="price">{{ variant.formatted_price }}</span>
-                      </div>
-                    {% endfor %}
-                  </div>
-                {% else %}
-                  <span class="price">
-                    {{ item.formatted_price }}
-                  </span>
-                {% endif %}
-              </div>
+          <section class="boong-menu-category reveal-up">
+            <div class="boong-menu-category-header">
+              <span>{{ forloop.counter|stringformat:"02d" }}</span>
+              <h2>{% if LANGUAGE_CODE == "cs" and category.name_alternative %}{{ category.name_alternative }}{% else %}{{ category.name }}{% endif %}</h2>
             </div>
-          {% endfor %}
 
-        </div>
+            <div class="boong-menu-items">
+              {% for item in category.items.all %}
+                <article class="boong-menu-item">
+                  <div class="boong-menu-item-main">
+                    <h3>{% if LANGUAGE_CODE == "cs" and item.name_alternative %}{{ item.name_alternative }}{% else %}{{ item.name }}{% endif %}</h3>
+                    {% if item.description %}
+                      <p>{% if LANGUAGE_CODE == "cs" and item.description_alternative %}{{ item.description_alternative }}{% else %}{{ item.description }}{% endif %}</p>
+                    {% endif %}
+                  </div>
+
+                  <div class="boong-menu-item-price">
+                    {% if item.variants.all %}
+                      {% for variant in item.variants.all %}
+                        <div class="boong-menu-variant">
+                          <span>{{ variant.name }}</span>
+                          <strong>{{ variant.formatted_price }}</strong>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <strong>{{ item.formatted_price }}</strong>
+                    {% endif %}
+                  </div>
+                </article>
+              {% endfor %}
+            </div>
+          </section>
         {% endif %}
       {% empty %}
-        <p>No menu items available.</p>
+        <p class="py-16 text-center text-boong-ink/60">{% trans "No menu items available." %}</p>
       {% endfor %}
-
     </div>
 
-    <!-- ========================= -->
-    <!-- PDF / IMAGE MENU -->
-    <!-- ========================= -->
-    <div id="menu-pdf" class="menu-content hidden">
-
-      {% for i in "123456789"|make_list %}
-      {% endfor %}
-
+    <div id="menu-pdf" class="menu-content boong-visual-menu-grid hidden">
       <img src="{% static 'img/menu/page_01.jpg' %}" alt="Menu page 1" loading="lazy" decoding="async">
       <img src="{% static 'img/menu/page_02.jpg' %}" alt="Menu page 2" loading="lazy" decoding="async">
       <img src="{% static 'img/menu/page_03.jpg' %}" alt="Menu page 3" loading="lazy" decoding="async">
@@ -105,7 +104,6 @@
       <img src="{% static 'img/menu/page_20.jpg' %}" alt="Menu page 20" loading="lazy" decoding="async">
 
     </div>
-
   </div>
 </section>
 

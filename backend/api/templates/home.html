@@ -1,248 +1,265 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block content %}
-<!-- ================= HERO ================= -->
-{% comment %} <section class="relative bg-black overflow-hidden min-h-[70vh]"> {% endcomment %}
-<section id="hero" class="relative bg-hero-black text-white overflow-hidden min-h-[60vh]">
-
-  <!-- RIGHT IMAGE (BACKGROUND, FULL WIDTH) -->
-  <div class="absolute inset-y-0 right-0 w-[50%]">
-    <div id="hero-image-slides" class="relative w-full h-full">
-
-      <!-- IMAGE 1 -->
-      {% comment %} <div class="hero-image absolute inset-0 bg-cover bg-center"
-           style="background-image:url('{% static "img/hero-extended.jpg" %}')">
-      </div> {% endcomment %}
-      <div class="hero-image absolute inset-0">
-          <img src="{% static 'img/hero-extended.jpg' %}" alt="hero image" class="h-full w-full object-cover block" fetchpriority="high" decoding="async">
-       <div class="absolute left-0 top-0 h-full w-32 lg:w-48"
-         style="background: linear-gradient(to right, rgba(11,11,11,0.95), rgba(11,11,11,0)); pointer-events:none;"></div>
-  </div>
-      <!-- IMAGE 2 -->
-         <div class="hero-image absolute inset-0">
-           <img src="{% static 'img/474459417_621716893662562_8345107166144038612_n.jpg' %}" alt="hero image" class="h-full w-full object-cover block" loading="lazy" decoding="async">
-          {% comment %} <img src="{% static 'img/474459417_621716893662562_8345107166144038612_n.jpg' %}" alt="hero image" class="h-full w-full object-contain block"> {% endcomment %}
-       <div class="absolute left-0 top-0 h-full w-32 lg:w-48"
-         style="background: linear-gradient(to right, rgba(11,11,11,0.95), rgba(11,11,11,0)); pointer-events:none;"></div>
-  </div>
-
-    </div>
-
-
-
-    <!-- GRADIENT OVER IMAGE -->
-    <div class="absolute inset-y-0 left-0 w-40
-                bg-gradient-to-r from-black to-transparent"></div>
-  </div>
-
-  <!-- CONTENT -->
-  <div class="relative z-10 max-w-7xl mx-auto h-full flex items-center">
-    <div class="pl-6 lg:pl-24 max-w-xl">
-
-      <div id="hero-text-slides">
-{% comment %} <h1 style="color:red;font-size:60px;">TEST HERO</h1> {% endcomment %}
-        <!-- TEXT 1 -->
-        <div class="hero-text-slide">
-              <h1 class="hero-title text-asian-red mb-6 text-4xl md:text-5xl lg:text-6xl  leading-tight">Experience<br>the Taste of Asia
-          </h1>
-          <p class="text-white/80 mb-8">
-            Savor our authentic dishes crafted with fresh ingredients and
-            traditional recipes.
-          </p>
-          <a href="{% url 'menu' %}"
-             class=" inline-block bg-asian-red text-white px-6 py-3 rounded-full">
-            Discover our menu
-          </a>
+{% get_current_language as LANGUAGE_CODE %}
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-boong-ivory pb-20 pt-28 md:min-h-screen md:pb-24 md:pt-32">
+    <div class="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-10 px-6 md:grid-cols-12 md:px-10 lg:px-12">
+      <div class="md:col-span-7">
+        <div class="reveal-up mb-6 flex items-center gap-4 text-sm uppercase text-boong-crimson">
+          <span class="h-px w-12 bg-boong-crimson"></span>
+          Prague 2, Vinohrady
         </div>
 
-        <!-- TEXT 2 -->
-        <div class="hero-text-slide ">
-         <h1 class="hero-title text-asian-red mb-6 text-4xl md:text-5xl lg:text-6xl  leading-tight">
-            Handmade Noodles,<br>Every Day
-          </h1>
-          <p class="text-white/80 mb-8">
-            We prepare our noodles fresh in-house every day using traditional
-            techniques for perfect texture and taste.
-          </p>
-          <a href="#favorites"
-             class="js-scroll inline-block border border-asian-red text-asian-red px-6 py-3 rounded-full hover:bg-asian-red hover:text-white transition">
-            See our signature dishes
-          </a>
+        <h1 class="reveal-up max-w-4xl font-boong-serif text-6xl leading-none text-boong-ink md:text-7xl lg:text-8xl" style="--delay: 0.08s">
+          {% blocktrans trimmed %}
+            A taste of <br>
+            <span class="italic text-boong-crimson">family,</span> deep <br>
+            in the city.
+          {% endblocktrans %}
+        </h1>
+
+        <p class="reveal-up mt-8 max-w-md text-lg leading-relaxed text-boong-ink/70 md:text-xl" style="--delay: 0.16s">
+          {% trans "Intimate, authentic Asian dining crafted with fresh ingredients, slow recipes, and the kind of welcome that makes a table feel like home." %}
+        </p>
+
+        <div class="reveal-up mt-7 grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-3" style="--delay: 0.2s">
+          <div class="hero-proof">
+            <span>{% trans "In-house" %}</span>
+            <strong>{% trans "Home made fresh noodles" %}</strong>
+          </div>
+          <div class="hero-proof">
+            <span>{% trans "Every day" %}</span>
+            <strong>{% trans "Fresh herbs & broth" %}</strong>
+          </div>
+          <div class="hero-proof">
+            <span>{% trans "Family" %}</span>
+            <strong>{% trans "Warm Vietnamese hospitality" %}</strong>
+          </div>
         </div>
 
+        <div class="reveal-up mt-10 flex flex-wrap items-center gap-5" style="--delay: 0.24s">
+          <a href="{% url 'menu' %}" class="group inline-flex items-center gap-3 bg-boong-ink px-8 py-4 text-sm uppercase text-boong-ivory transition hover:bg-boong-crimson">
+            {% trans "Explore Menu" %}
+            <span class="transition group-hover:translate-x-1">→</span>
+          </a>
+          <a href="#visit" class="border-b border-boong-ink/30 pb-1 text-sm uppercase text-boong-ink transition hover:border-boong-crimson hover:text-boong-crimson">
+            {% trans "Reserve a Table" %}
+          </a>
+        </div>
       </div>
 
-    </div>
-  </div>
-
-</section>
-
-
-
-<!-- ================= SIGNATURE DISHES ================= -->
-<section id="favorites" class="bg-page-beige py-12">
-  <div class="max-w-6xl mx-auto px-6">
-
-    <!-- Heading -->
-    <div class="text-center mb-16">
-      <h2 class="text-3xl font-display mb-4" style="color:var(--asian-red)">
-        Signature Dishes
-      </h2>
-      <p class="fade-in text-gray-600 max-w-xl mx-auto" style="--delay: 0.3s">
-       A curated selection of dishes that represent the heart of our kitchen.
-      </p>
-    </div>
-
-    {% if menu_items %}
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-
-        {% for item in menu_items %}
-          <!-- GRID ITEM -->
-          <div
-            class="group relative cursor-pointer overflow-hidden rounded-xl shadow-lg bg-white"
-          >
-            <!-- IMAGE (click opens modal) -->
-            <button
-              type="button"
-              class="w-full h-72 block modal-open"
-              aria-label="View {{ item.name }}"
-              data-title="{{ item.name|escapejs }}"
-              data-description="{{ item.description|default:''|escapejs }}"
-              data-price="{% if item.price_summary %}{{ item.price_summary|escapejs }}{% endif %}"
-              data-variants="{% for variant in item.variants.all %}{{ variant.name|escapejs }}|{{ variant.formatted_price|escapejs }}{% if not forloop.last %};{% endif %}{% endfor %}"
-              data-image="{% if item.photo %}{{ item.photo.url }}{% else %}{% static 'img/menu-placeholder.jpg' %}{% endif %}"
-              style="border:0; padding:0; background:transparent;"
+      <div class="reveal-up hero-showcase md:col-span-5" style="--delay: 0.32s">
+        <div class="hero-showcase-stage">
+          <figure class="hero-photo-main image-zoom-container">
+            <img
+              src="{% static 'img/hero-generated-noodles.png' %}"
+              alt="Fresh noodles lifted from a steaming Boong bowl"
+              class="sepia-[.08] saturate-[.95]"
+              fetchpriority="high"
+              decoding="async"
             >
-              <img
-                src="{% if item.photo %}{{ item.photo.url }}{% else %}{% static 'img/menu-placeholder.jpg' %}{% endif %}"
-                alt="{{ item.name }}"
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            <figcaption>{% trans "Home made fresh noodles" %}</figcaption>
+          </figure>
+
+          <figure class="hero-photo-accent image-zoom-container">
+            <img
+              src="{% static 'img/hero-generated-bowl.png' %}"
+              alt="Boong Restaurant rice noodle bowl with herbs and grilled meat"
+              loading="lazy"
+              decoding="async"
+              class="sepia-[.05] saturate-[.98]"
+            >
+          </figure>
+
+          <div class="hero-menu-strip" aria-hidden="true">
+            <img src="{% static 'img/hero-generated-table.png' %}" alt="">
+          </div>
+
+          <div class="hero-signature-badge">
+            <span>01</span>
+            <p>{% trans "Signature bowls, home made noodles, vivid herbs, real steam." %}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto mt-14 max-w-[1400px] px-6 md:px-10 lg:px-12">
+      <div class="h-px w-full bg-boong-stone"></div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section id="philosophy" class="bg-boong-ink py-20 text-boong-ivory md:py-28">
+    <div class="mx-auto grid max-w-[1400px] grid-cols-1 gap-12 px-6 md:grid-cols-12 md:px-10 lg:px-12">
+      <div class="md:col-span-4">
+        <h2 class="reveal-up border-l-2 border-boong-crimson pl-6 font-boong-serif text-5xl leading-tight md:text-6xl">
+          {% blocktrans trimmed %}
+            Rooted in <br>
+            <span class="italic text-boong-gold">tradition,</span><br>
+            served with grace.
+          {% endblocktrans %}
+        </h2>
+        <p class="reveal-up mt-8 max-w-sm leading-relaxed text-boong-ivory/60" style="--delay: 0.08s">
+          {% trans "We cook the food we grew up with: honest, generous, aromatic, and prepared with the calm patience real flavor needs." %}
+        </p>
+      </div>
+
+      <div class="grid gap-10 md:col-span-8 md:grid-cols-3">
+        <div class="reveal-up value-panel" style="--delay: 0.12s">
+          <span class="value-index">01</span>
+          <h3>{% trans "Authentic Recipes" %}</h3>
+          <p>{% trans "Traditional dishes, familiar spices, and the kind of flavors that stay close to their roots." %}</p>
+        </div>
+        <div class="reveal-up value-panel" style="--delay: 0.2s">
+          <span class="value-index">02</span>
+          <h3>{% trans "Fresh Ingredients" %}</h3>
+          <p>{% trans "Produce selected every morning, herbs kept bright, noodles prepared in-house, and sauces made with patience." %}</p>
+        </div>
+        <div class="reveal-up value-panel" style="--delay: 0.28s">
+          <span class="value-index">03</span>
+          <h3>{% trans "Warm Hosting" %}</h3>
+          <p>{% trans "Service that feels relaxed and personal, whether you stop by for lunch or settle in for dinner." %}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED DISHES -->
+  <section id="favorites" class="bg-boong-ivory py-24 md:py-32">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10 lg:px-12">
+      <div class="reveal-up mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div>
+          <p class="mb-4 text-sm uppercase text-boong-jade">{% trans "From the Kitchen" %}</p>
+          <h2 class="font-boong-serif text-5xl leading-none text-boong-ink md:text-6xl">{% trans "The Signatures." %}</h2>
+        </div>
+        <a href="{% url 'menu' %}" class="w-fit border-b border-boong-crimson pb-1 text-sm uppercase text-boong-crimson transition hover:border-boong-ink hover:text-boong-ink">{% trans "View Full Menu" %}</a>
+      </div>
+
+      {% if menu_items %}
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+          {% for item in menu_items %}
+            <article class="reveal-up group cursor-pointer" style="--delay: {{ forloop.counter0 }}00ms">
+              <button
+                type="button"
+                class="modal-open block w-full text-left"
+                aria-label="View {{ item.name }}"
+                data-title="{% if LANGUAGE_CODE == 'cs' and item.name_alternative %}{{ item.name_alternative|escapejs }}{% else %}{{ item.name|escapejs }}{% endif %}"
+                data-description="{% if LANGUAGE_CODE == 'cs' and item.description_alternative %}{{ item.description_alternative|escapejs }}{% else %}{{ item.description|default:''|escapejs }}{% endif %}"
+                data-price="{% if item.price_summary %}{{ item.price_summary|escapejs }}{% endif %}"
+                data-variants="{% for variant in item.variants.all %}{{ variant.name|escapejs }}|{{ variant.formatted_price|escapejs }}{% if not forloop.last %};{% endif %}{% endfor %}"
+                data-image="{% if item.photo %}{{ item.photo.url }}{% else %}{% static 'img/menu-1.jpg' %}{% endif %}"
               >
-            </button>
+                <span class="image-zoom-container relative mb-6 block aspect-[4/5] overflow-hidden border border-boong-stone bg-boong-stone/40">
+                  <img
+                    src="{% if item.photo %}{{ item.photo.url }}{% else %}{% static 'img/menu-1.jpg' %}{% endif %}"
+                    alt="{% if LANGUAGE_CODE == 'cs' and item.name_alternative %}{{ item.name_alternative }}{% else %}{{ item.name }}{% endif %}"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-cover sepia-[.08]"
+                  >
+                  <span class="absolute bottom-5 left-5 translate-y-3 bg-boong-ink/85 px-4 py-2 text-sm text-boong-ivory opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">{% trans "Discover" %}</span>
+                </span>
+              </button>
 
-            <!-- OVERLAY -->
-            <div
-              class="pointer-events-none absolute inset-0 bg-black/55 opacity-0
-                     group-hover:opacity-100 transition-opacity duration-300
-                     flex items-center justify-center text-center p-6"
-            >
-              <div class="text-white">
-                <h3 class="text-xl font-semibold mb-2">
-                  {{ item.name }}
-                </h3>
-                {% if item.description %}
-                  <p class="opacity-90 line-clamp-3">
-                    {{ item.description }}
-                  </p>
+              <div class="flex items-start justify-between gap-6 border-t border-boong-stone pt-4 transition group-hover:border-boong-crimson">
+                <div>
+                  <h3 class="font-boong-serif text-3xl leading-tight text-boong-ink transition group-hover:text-boong-crimson">
+                    {% if LANGUAGE_CODE == "cs" and item.name_alternative %}{{ item.name_alternative }}{% else %}{{ item.name }}{% endif %}
+                  </h3>
+                  {% if item.description or item.description_alternative %}
+                    <p class="mt-2 text-sm leading-relaxed text-boong-ink/60">
+                      {% if LANGUAGE_CODE == "cs" and item.description_alternative %}{{ item.description_alternative }}{% else %}{{ item.description }}{% endif %}
+                    </p>
+                  {% endif %}
+                </div>
+                {% if item.price_summary %}
+                  <span class="shrink-0 whitespace-nowrap font-boong-serif text-xl text-boong-ink">{{ item.price_summary }}</span>
                 {% endif %}
               </div>
-            </div>
-          </div>
-        {% endfor %}
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-boong-ink/60">{% trans "No menu items found." %}</p>
+      {% endif %}
+    </div>
+  </section>
 
+  <!-- MENU DISCOVERY -->
+  <section class="grid min-h-[52vh] grid-cols-1 border-y border-boong-stone bg-boong-ink md:grid-cols-2">
+    <a href="{% url 'menu' %}" class="menu-discovery group border-b border-boong-ivory/10 md:border-b-0 md:border-r">
+      <span class="menu-discovery-fill"></span>
+      <span class="relative z-10">
+        <span class="block font-boong-serif text-5xl text-boong-ivory transition group-hover:text-boong-ink">{% trans "Web Menu" %}</span>
+        <span class="mt-2 block text-sm uppercase text-boong-ivory/60 transition group-hover:text-boong-ink/60">{% trans "Clean and Scannable" %}</span>
+      </span>
+    </a>
+    <a href="{% url 'menu' %}#menu-pdf" class="menu-discovery group">
+      <img src="{% static 'img/menu/page_01.jpg' %}" alt="Printed menu preview" class="absolute inset-0 h-full w-full object-cover opacity-0 grayscale transition duration-700 group-hover:opacity-35 group-hover:scale-105">
+      <span class="absolute inset-0 bg-gradient-to-t from-boong-ink to-transparent"></span>
+      <span class="relative z-10">
+        <span class="block font-boong-serif text-5xl text-boong-ivory">{% trans "Visual Menu" %}</span>
+        <span class="mt-2 block text-sm uppercase text-boong-gold">{% trans "See the Dishes" %}</span>
+      </span>
+    </a>
+  </section>
+
+  <!-- FOUNDERS -->
+  <section id="founders" class="bg-boong-ivory py-24 md:py-36">
+    <div class="mx-auto max-w-[1240px] px-6 md:px-10 lg:px-12">
+      <div class="reveal-up mb-12 text-center">
+        <p class="mb-4 text-sm uppercase text-boong-crimson">{% trans "The Family Story" %}</p>
+        <h2 class="font-boong-serif text-5xl leading-none text-boong-ink md:text-6xl">
+          {% blocktrans trimmed %}Two hearts,<br>one lineage.{% endblocktrans %}
+        </h2>
       </div>
-    {% else %}
-      <p class="text-center text-gray-600 mt-6">No menu items found.</p>
-    {% endif %}
 
-  </div>
-
-  {{ block.super }}
-</section>
-<!-- ================= CORE VALUES ================= -->
-<section class="bg-page-beige py-6">
-{% comment %} <section class="page-beige-bg"> {% endcomment %}
-  <div class="max-w-6xl mx-auto px-6 py-12">
-    <h2 class="text-3xl text-center font-display mb-4" style="color:var(--asian-red)">Our Core Values</h2>
-
-    <div class="fade-in2 grid grid-cols-1 sm:grid-cols-3 gap-8 items-start text-center"  style="--delay: 0s" >
-      <div class="px-6">
-        <img src="{% static 'img/icon-authentic.png' %}" class="mx-auto h-12 mb-4" alt="authentic" loading="lazy" decoding="async">
-        <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Authentic Recipes</h3>
-        <p class="text-gray-700 max-w-xs mx-auto">We cook the dishes we grew up with – honest, traditional and full of flavor.</p>
+      <div class="reveal-up overflow-hidden rounded-t-[3rem] rounded-b-md border-4 border-white bg-boong-crimson shadow-2xl shadow-boong-crimson/10">
+        <img
+          src="{% static 'img/founders-redesign.png' %}"
+          alt="Illustrated founder portraits in red Vietnamese formal clothing with lotus flowers"
+          loading="lazy"
+          decoding="async"
+          class="aspect-[2.2/1] w-full object-cover"
+        >
       </div>
 
-      <div class="fade-in2 px-6 border-l border-r border-panel-divider" style="--delay: 0.5s">
-        <img src="{% static 'img/icon-fresh.png' %}" class="mx-auto h-12 mb-4" alt="fresh" loading="lazy" decoding="async">
-        <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Fresh Ingredients</h3>
-        <p class="text-gray-700 max-w-xs mx-auto">Every morning we select fresh produce and prepare everything from scratch.</p>
+      <div class="reveal-up mx-auto mt-14 grid max-w-4xl grid-cols-1 gap-10 md:grid-cols-2">
+        <div>
+          <h3 class="border-b border-boong-stone pb-4 font-boong-serif text-3xl text-boong-ink">{% trans "The Journey" %}</h3>
+          <p class="mt-5 leading-relaxed text-boong-ink/70">
+            {% trans "Boong was created as a place where authentic Asian flavors meet the calm rhythm of Prague. The food is personal: recipes, memory, and hospitality brought together at one table." %}
+          </p>
+        </div>
+        <div>
+          <h3 class="border-b border-boong-stone pb-4 font-boong-serif text-3xl text-boong-ink">{% trans "The Promise" %}</h3>
+          <p class="mt-5 leading-relaxed text-boong-ink/70">
+            {% trans "Every guest should feel welcome, relaxed, and cared for. Our mission is simple: cook with honesty, serve with warmth, and leave people with a meal they remember." %}
+          </p>
+        </div>
       </div>
 
-      <div class="fade-in2 px-6" style="--delay: 1s">
-        <img src="{% static 'img/icon-service.png' %}" class="mx-auto h-12 mb-4" alt="service" loading="lazy" decoding="async">
-        <h3 class="text-lg font-semibold mb-2" style="color:var(--asian-red)">Exceptional Service</h3>
-        <p class="text-gray-700 max-w-xs mx-auto">We want you to feel relaxed, welcome and at home every time you visit.</p>
+      <p class="reveal-up mt-12 text-center font-boong-serif text-3xl italic text-boong-crimson">Mr. Manh & Mrs. Huong</p>
+    </div>
+  </section>
+
+  <!-- ATMOSPHERE -->
+  <section class="grid min-h-[70vh] grid-cols-1 bg-boong-ivory md:grid-cols-2">
+    <div class="flex items-center justify-center px-6 py-20 text-center md:px-12">
+      <div class="reveal-up max-w-xl">
+        <p class="mb-4 text-sm uppercase text-boong-crimson">{% trans "Atmosphere" %}</p>
+        <h2 class="font-boong-serif text-5xl leading-tight text-boong-ink md:text-6xl">{% trans "An atmosphere crafted for lingering." %}</h2>
+        <p class="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-boong-ink/70">
+          {% trans "Soft lighting, a warm room, and the easy sound of a busy kitchen. Come for a quick lunch, stay for an evening with friends." %}
+        </p>
       </div>
     </div>
-  </div>
-</section>
-</section>
-
-<!-- ================= ATMOSPHERE ================= -->
-<section class="relative w-full min-h-[60vh] flex items-center">
-
-  <img
-    src="{% static 'img/restaurant-interior.jpg' %}"
-    alt="Restaurant atmosphere"
-    loading="lazy"
-    decoding="async"
-    class="absolute inset-0 w-full h-full object-cover"
-  >
-
-  <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/10"></div>
-
-  <div class="relative z-10 max-w-6xl mx-auto px-6">
-    <div class="max-w-xl text-white">
-      <h2 class="text-4xl text-center font-display mb-6">
-        More Than a Meal
-      </h2>
-      <p class="fade-in text-white/90 text-center leading-relaxed" style="--delay: 0.5s">
-        Our restaurant was created as a place where authentic Asian flavors meet
-        a calm, welcoming atmosphere.
-      </p>
+    <div class="min-h-[46vh] overflow-hidden md:min-h-full">
+      <img src="{% static 'img/restaurant-interior.jpg' %}" alt="Boong Restaurant interior" loading="lazy" decoding="async" class="h-full w-full object-cover sepia-[.16] saturate-[.85]">
     </div>
-  </div>
+  </section>
 
-</section>
-
-<!-- ================= FOUNDERS ================= -->
-
-<!-- FOUNDERS -->
-<section id="founders" class="js-scroll bg-page-beige">
-  <div class="max-w-6xl mx-auto px-6 py-12">
-    <h2 class="text-3xl font-display text-center mb-6" style="color:var(--asian-red)">From the Founders</h2>
-    <div class="max-w-3xl mx-auto text-center">
-      <p class="fade-in founder-quote mb-6" style="--delay: 0.5s">“We are passionate about sharing the rich culinary heritage of Asia with our community. Our mission is to create a warm and welcoming atmosphere where every guest feels like family and leaves with unforgettable memories.”</p>
-      <div class="flex justify-center gap-12 mt-10 founders-row">
-
-  <!-- Founder 1 -->
-  <div class="text-center founder">
-    <img src="{% static 'img/mrmanh.png' %}"
-         alt="Founder"
-         loading="lazy"
-         decoding="async"
-         class="founder-photo rounded-full mx-auto">
-    <h4 class="mt-4 text-lg font-semibold">Mr. Manh</h4>
-  </div>
-
-  <!-- Founder 2 -->
-  <div class="text-center founder">
-    <img src="{% static 'img/mrshuong.png' %}"
-         alt="Founder"
-         loading="lazy"
-         decoding="async"
-         class="founder-photo rounded-full mx-auto">
-    <h4 class="mt-4 text-lg font-semibold">Mrs Huong</h4>
-  </div>
-
-
-
-<!-- MODAL + HERO JS -->
 {% include "partials/menu_modal.html" %}
-{% include "partials/hero.js" %}
-
-
 {% endblock %}

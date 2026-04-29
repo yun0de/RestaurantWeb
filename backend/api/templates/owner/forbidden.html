@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="owner-login-page">
+  <div class="owner-card owner-login-card">
+    <p class="owner-kicker">Access denied</p>
+    <h1>This account cannot manage the website.</h1>
+    <p>Use an Owner account or the initial superuser account.</p>
+    <a href="{% url 'home' %}" class="owner-primary owner-link-button">Back to website</a>
+  </div>
+</section>
+{% endblock %}
