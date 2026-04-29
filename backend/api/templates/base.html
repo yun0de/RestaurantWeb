@@ -1,10 +1,11 @@
-{% load static %}
+{% load static i18n %}
 <!doctype html>
-<html lang="en">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{% block title %}Boong Restaurant - Vinohrady{% endblock %}</title>
+  <title>{% block title %}{% trans "Boong Restaurant - Vinohrady" %}{% endblock %}</title>
 
   <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -20,22 +21,34 @@
 </head>
 
 
-<body class="bg-page-beige text-gray-800 antialiased">
+<body class="bg-boong-ivory text-boong-ink antialiased font-boong-sans">
+
+  <div class="noise-overlay" aria-hidden="true"></div>
 
   <!-- HEADER -->
-  <header class="bg-hero-black sticky top-0 z-50 bg-black transition-shadow">
-    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3">
-        <img src="{% static 'img/boong_logo.png' %}" alt="Asian Restaurant" class="h-14 h-14">
-        <span class="text-asian-red text-base md:text-lg lg:text-xl font-semibold">Boong Restaurant</span>
+  <header id="site-header" class="fixed top-0 left-0 z-50 w-full border-b border-transparent transition-all duration-300">
+    <div class="header-surface absolute inset-0 -z-10 opacity-0 transition-opacity duration-300"></div>
+    <div class="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-5 md:px-10 lg:px-12">
+      <a href="{% url 'home' %}" class="flex items-center gap-3 text-boong-ink">
+        <img src="{% static 'img/boong_logo.png' %}" alt="Boong Restaurant" class="h-11 w-11 object-contain">
+        <span class="font-boong-serif text-3xl font-semibold leading-none">BOONG</span>
       </a>
-      <nav class="text-white text-sm">
-        <a href="{% url 'home' %}"class="px-4 hover:underline">Home</a>
-        <a href="{% url 'home' %}#favorites" class="px-4 hover:underline">Favorite picks</a>
-        <a href="{% url 'home' %}#founders" class="px-4 hover:underline">Founders</a>
-        <a href="{% url 'menu' %}" class="px-4 hover:underline">Menu</a>
-        {% comment %} <a href="/admin" class="px-4 hover:underline">Admin</a> {% endcomment %}
+      <nav class="hidden items-center gap-8 text-sm uppercase text-boong-ink/70 md:flex">
+        <a href="{% url 'home' %}" class="nav-link">{% trans "Home" %}</a>
+        <a href="{% url 'menu' %}" class="nav-link">{% trans "Our Menu" %}</a>
+        <a href="{% url 'home' %}#founders" class="nav-link">{% trans "Family Story" %}</a>
+        <a href="{% url 'home' %}#visit" class="nav-link">Vinohrady</a>
       </nav>
+      <div class="flex items-center gap-4">
+        <a href="tel:+420777170468" class="hidden text-sm text-boong-ink/70 hover:text-boong-ink lg:inline-flex">+420 777 170 468</a>
+        <form action="{% url 'set_language' %}" method="post" class="language-switcher" aria-label="{% trans 'Language switcher' %}">
+          {% csrf_token %}
+          <input name="next" type="hidden" value="{{ request.get_full_path }}">
+          <button type="submit" name="language" value="en" class="{% if LANGUAGE_CODE == 'en' %}is-active{% endif %}" aria-label="English">EN</button>
+          <button type="submit" name="language" value="cs" class="{% if LANGUAGE_CODE == 'cs' %}is-active{% endif %}" aria-label="Čeština">CZ</button>
+        </form>
+        <a href="{% url 'home' %}#visit" class="rounded-full bg-boong-crimson px-5 py-2.5 text-sm uppercase text-boong-ivory shadow-lg shadow-boong-crimson/20 transition hover:bg-boong-ink">{% trans "Find Us" %}</a>
+      </div>
     </div>
   </header>
 
@@ -43,92 +56,71 @@
     {% block content %}{% endblock %}
   </main>
 
-<!-- FOOTER -->
-<footer class="bg-black text-white pt-24">
-
-  <!-- 🔹 Social -->
-  <div class="text-center mb-20">
-    <p class="text-sm text-gray-400  mb-6" >
-      Find news & updates on our
-    </p>
-    <p class="text-3xl font-semibold">
-      Instagram and  <a href='https://www.facebook.com/boongrestaurant.cz/'>Facebook</a>.
-    </p>
-  </div>
-
-  <!-- 🔹 TŘI BLOKY NA JEDNÉ ŘÁDCE -->
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 items-start">
-
-      <!-- Opening hours -->
-      <div>
-        <h3 class="mb-4 font-semibold">Opening hours</h3>
-        <p class="text-xl text-gray-300 leading-relaxed">
-          Mon – Fri: 11:00 – 22:30<br>
-          Sat: 11:00 – 22:30<br>
-          Sun: 11:00 – 22:30<br>
-          Holidays: 11:00 – 22:30
-        </p>
+<footer id="visit" class="border-t-[8px] border-boong-crimson bg-boong-ink pt-20 text-boong-ivory">
+  <div class="mx-auto grid max-w-[1400px] grid-cols-1 gap-12 px-6 pb-16 md:grid-cols-3 md:px-10 lg:px-12">
+    <div>
+      <a href="{% url 'home' %}" class="mb-6 block font-boong-serif text-4xl font-semibold">BOONG.</a>
+      <p class="max-w-sm text-boong-ivory/60">{% trans "Authentic Asian flavors, served with warmth in the heart of Vinohrady, Prague." %}</p>
+      <div class="mt-8 flex gap-4">
+        <a href="https://www.facebook.com/boongrestaurant.cz/" target="_blank" rel="noopener" class="footer-social">Fb</a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer-social">Ig</a>
       </div>
+    </div>
 
-      <!-- Contact -->
-      <div>
-        <h3 class="mb-4 font-semibold">Contact</h3>
-        <p class="text-sm text-gray-300 leading-relaxed">
-          Boong Restaurant<br>
-          Budečská 816/4, 120 00 Vinohrady<br>
-          Prague<br>
-          manhthanhdat94@gmail.com<br>
-          +420 777 170 468
-        </p>
-      </br>
-   
-        <a
-<a
-  href="https://maps.app.goo.gl/Bhg1Xm6hXGR4B1u18"
-  target="_blank"
-  rel="noopener"
-  class="navigate-btn">
-  📍 Open in google maps
-</a>
-
-
+    <div>
+      <h3 class="footer-kicker">{% trans "Visit Us" %}</h3>
+      <p class="mt-6 leading-relaxed text-boong-ivory/80">
+        <strong class="font-medium text-boong-ivory">Boong Restaurant</strong><br>
+        Budečská 816/4<br>
+        120 00 Praha 2, Vinohrady<br>
+        Czech Republic
+      </p>
+      <div class="mt-6 space-y-2 text-boong-ivory/70">
+        <a href="tel:+420777170468" class="block hover:text-boong-gold">+420 777 170 468</a>
+        <a href="mailto:manhthanhdat94@gmail.com" class="block hover:text-boong-gold">manhthanhdat94@gmail.com</a>
+        <a href="https://maps.app.goo.gl/Bhg1Xm6hXGR4B1u18" target="_blank" rel="noopener" class="inline-block border-b border-boong-gold/50 pb-1 text-boong-gold hover:border-boong-ivory hover:text-boong-ivory">{% trans "Open in Google Maps" %}</a>
       </div>
+    </div>
 
-      <!-- Map -->
-      <div>
-        <h3 class="text-center mb-4 font-semibold">Map</h3>
-        <div class="w-full h-full rounded overflow-hidden">
-          <!-- iframe map -->
-           <div class="map-wrapper">
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.1033926836362!2d14.439703477509639!3d50.073205414453156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b95cd5e316f17%3A0xd12e3b08928d6f71!2sBoong%20Restaurant!5e0!3m2!1sen!2scz!4v1768430578834!5m2!1sen!2scz"
-    width="100%"
-    height="100%"
-    style="border:0;"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-</div>
-
-        </div>
-      </div>
-
+    <div>
+      <h3 class="footer-kicker">{% trans "Opening Hours" %}</h3>
+      <ul class="mt-6 space-y-3 text-boong-ivory/75">
+        <li class="flex justify-between gap-6 border-b border-boong-ivory/10 pb-2"><span>{% trans "Mon - Fri" %}</span><span>11:00 - 22:30</span></li>
+        <li class="flex justify-between gap-6 border-b border-boong-ivory/10 pb-2"><span>{% trans "Saturday" %}</span><span>11:00 - 22:30</span></li>
+        <li class="flex justify-between gap-6 border-b border-boong-ivory/10 pb-2"><span>{% trans "Sunday" %}</span><span>11:00 - 22:30</span></li>
+      </ul>
+      <a href="tel:+420777170468" class="mt-8 block bg-boong-ivory px-6 py-3 text-center text-sm uppercase text-boong-ink transition hover:bg-boong-gold">{% trans "Call for a Reservation" %}</a>
     </div>
   </div>
-
-  <!-- 🔹 Bottom -->
-  <div class="text-center text-sm text-gray-500 mt-20 pb-10">
-    © 2025 Boong Restaurant — All rights reserved.<br>
-    <a href="#" class="underline">Privacy</a> · <a href="#" class="underline">Terms</a>
+  <div class="mx-auto max-w-[1400px] border-t border-boong-ivory/10 px-6 py-8 text-xs uppercase text-boong-ivory/40 md:px-10 lg:px-12">
+    © 2026 Boong Restaurant. All rights reserved.
   </div>
-
 </footer>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.getElementById('site-header');
+  const revealItems = document.querySelectorAll('.reveal-up');
 
+  function updateHeader() {
+    header.classList.toggle('is-scrolled', window.scrollY > 40);
+  }
 
-</body>
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealItems.forEach((item) => observer.observe(item));
+});
+</script>
 {% include "partials/smooth_scroll.js" %}
 {% include "partials/intersection_obs.js" %}
+</body>
 </html>

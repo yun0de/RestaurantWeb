@@ -1,0 +1,295 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Boong Restaurant\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-29 17:06+0200\n"
+"PO-Revision-Date: 2026-04-29 00:00+0000\n"
+"Last-Translator: Codex\n"
+"Language-Team: Czech\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: api/templates/base.html:8
+msgid "Boong Restaurant - Vinohrady"
+msgstr "Boong Restaurant - Vinohrady"
+
+#: api/templates/base.html:40
+msgid "Home"
+msgstr "Domů"
+
+#: api/templates/base.html:40 api/templates/menu.html:11
+msgid "Our Menu"
+msgstr "Naše menu"
+
+#: api/templates/base.html:41
+msgid "Family Story"
+msgstr "Rodinný příběh"
+
+#: api/templates/base.html:46
+msgid "Language switcher"
+msgstr "Přepínač jazyka"
+
+#: api/templates/base.html:52
+msgid "Find Us"
+msgstr "Kde nás najdete"
+
+#: api/templates/base.html:65
+msgid ""
+"Authentic Asian flavors, served with warmth in the heart of Vinohrady, "
+"Prague."
+msgstr ""
+"Autentické asijské chutě podávané s vřelostí v srdci pražských Vinohrad."
+
+#: api/templates/base.html:73
+msgid "Visit Us"
+msgstr "Navštivte nás"
+
+#: api/templates/base.html:83
+msgid "Open in Google Maps"
+msgstr "Otevřít v Google Maps"
+
+#: api/templates/base.html:88
+msgid "Opening Hours"
+msgstr "Otevírací doba"
+
+#: api/templates/base.html:90
+msgid "Mon - Fri"
+msgstr "Po - Pá"
+
+#: api/templates/base.html:91
+msgid "Saturday"
+msgstr "Sobota"
+
+#: api/templates/base.html:92
+msgid "Sunday"
+msgstr "Neděle"
+
+#: api/templates/base.html:94
+msgid "Call for a Reservation"
+msgstr "Zavolat pro rezervaci"
+
+#: api/templates/home.html:15
+msgid ""
+"A taste of <br> <span class=\"italic text-boong-crimson\">family,</span> "
+"deep <br> in the city."
+msgstr ""
+"Chuť <br> <span class=\"italic text-boong-crimson\">rodiny,</span> uprostřed "
+"<br> města."
+
+#: api/templates/home.html:23
+msgid ""
+"Intimate, authentic Asian dining crafted with fresh ingredients, slow "
+"recipes, and the kind of welcome that makes a table feel like home."
+msgstr ""
+"Intimní a autentické asijské stolování z čerstvých surovin, pomalých receptů "
+"a pohostinnosti, díky které se u stolu cítíte jako doma."
+
+#: api/templates/home.html:28
+msgid "In-house"
+msgstr "U nás v kuchyni"
+
+#: api/templates/home.html:29 api/templates/home.html:62
+msgid "Home made fresh noodles"
+msgstr "Domácí čerstvé nudle"
+
+#: api/templates/home.html:32
+msgid "Every day"
+msgstr "Každý den"
+
+#: api/templates/home.html:33
+msgid "Fresh herbs & broth"
+msgstr "Čerstvé bylinky a vývar"
+
+#: api/templates/home.html:36
+msgid "Family"
+msgstr "Rodina"
+
+#: api/templates/home.html:37
+msgid "Warm Vietnamese hospitality"
+msgstr "Vřelá vietnamská pohostinnost"
+
+#: api/templates/home.html:43
+msgid "Explore Menu"
+msgstr "Prohlédnout menu"
+
+#: api/templates/home.html:47
+msgid "Reserve a Table"
+msgstr "Rezervovat stůl"
+
+#: api/templates/home.html:81
+msgid "Signature bowls, home made noodles, vivid herbs, real steam."
+msgstr "Signature misky, domácí nudle, výrazné bylinky a opravdová pára."
+
+#: api/templates/home.html:97
+msgid ""
+"Rooted in <br> <span class=\"italic text-boong-gold\">tradition,</span><br> "
+"served with grace."
+msgstr ""
+"Zakořeněno v <br> <span class=\"italic text-boong-gold\">tradici,</span><br> "
+"podáváno s lehkostí."
+
+#: api/templates/home.html:104
+msgid ""
+"We cook the food we grew up with: honest, generous, aromatic, and prepared "
+"with the calm patience real flavor needs."
+msgstr ""
+"Vaříme jídlo, na kterém jsme vyrostli: poctivé, štědré, voňavé a připravené "
+"s trpělivostí, kterou opravdová chuť potřebuje."
+
+#: api/templates/home.html:111
+msgid "Authentic Recipes"
+msgstr "Autentické recepty"
+
+#: api/templates/home.html:112
+msgid ""
+"Traditional dishes, familiar spices, and the kind of flavors that stay close "
+"to their roots."
+msgstr ""
+"Tradiční jídla, známé koření a chutě, které zůstávají blízko svým kořenům."
+
+#: api/templates/home.html:116
+msgid "Fresh Ingredients"
+msgstr "Čerstvé suroviny"
+
+#: api/templates/home.html:117
+msgid ""
+"Produce selected every morning, herbs kept bright, noodles prepared in-"
+"house, and sauces made with patience."
+msgstr ""
+"Suroviny vybírané každé ráno, svěží bylinky, nudle připravované přímo u nás "
+"a omáčky vařené s trpělivostí."
+
+#: api/templates/home.html:121
+msgid "Warm Hosting"
+msgstr "Vřelé přijetí"
+
+#: api/templates/home.html:122
+msgid ""
+"Service that feels relaxed and personal, whether you stop by for lunch or "
+"settle in for dinner."
+msgstr ""
+"Obsluha, která působí přirozeně a osobně, ať už přijdete na rychlý oběd, "
+"nebo zůstanete na večeři."
+
+#: api/templates/home.html:133
+msgid "From the Kitchen"
+msgstr "Z naší kuchyně"
+
+#: api/templates/home.html:134
+msgid "The Signatures."
+msgstr "Naše speciality."
+
+#: api/templates/home.html:136
+msgid "View Full Menu"
+msgstr "Zobrazit celé menu"
+
+#: api/templates/home.html:161
+msgid "Discover"
+msgstr "Objevit"
+
+#: api/templates/home.html:180
+msgid "No menu items found."
+msgstr "Nebyly nalezeny žádné položky menu."
+
+#: api/templates/home.html:190
+msgid "Web Menu"
+msgstr "Webové menu"
+
+#: api/templates/home.html:191
+msgid "Clean and Scannable"
+msgstr "Přehledné a rychlé"
+
+#: api/templates/home.html:198
+msgid "Visual Menu"
+msgstr "Vizuální menu"
+
+#: api/templates/home.html:199
+msgid "See the Dishes"
+msgstr "Podívejte se na jídla"
+
+#: api/templates/home.html:208
+msgid "The Family Story"
+msgstr "Rodinný příběh"
+
+#: api/templates/home.html:210
+msgid "Two hearts,<br>one lineage."
+msgstr "Dvě srdce,<br>jedna tradice."
+
+#: api/templates/home.html:226
+msgid "The Journey"
+msgstr "Naše cesta"
+
+#: api/templates/home.html:228
+msgid ""
+"Boong was created as a place where authentic Asian flavors meet the calm "
+"rhythm of Prague. The food is personal: recipes, memory, and hospitality "
+"brought together at one table."
+msgstr ""
+"Boong vznikl jako místo, kde se autentické asijské chutě potkávají s klidným "
+"rytmem Prahy. Jídlo je osobní: recepty, vzpomínky a pohostinnost u jednoho "
+"stolu."
+
+#: api/templates/home.html:232
+msgid "The Promise"
+msgstr "Náš slib"
+
+#: api/templates/home.html:234
+msgid ""
+"Every guest should feel welcome, relaxed, and cared for. Our mission is "
+"simple: cook with honesty, serve with warmth, and leave people with a meal "
+"they remember."
+msgstr ""
+"Každý host se má cítit vítaný, uvolněný a opečovaný. Naše mise je "
+"jednoduchá: vařit poctivě, servírovat s vřelostí a zanechat vzpomínku na "
+"jídlo, ke kterému se chcete vrátit."
+
+#: api/templates/home.html:247
+msgid "Atmosphere"
+msgstr "Atmosféra"
+
+#: api/templates/home.html:248
+msgid "An atmosphere crafted for lingering."
+msgstr "Atmosféra stvořená pro posezení."
+
+#: api/templates/home.html:250
+msgid ""
+"Soft lighting, a warm room, and the easy sound of a busy kitchen. Come for a "
+"quick lunch, stay for an evening with friends."
+msgstr ""
+"Jemné světlo, útulný prostor a příjemný ruch kuchyně. Přijďte na rychlý "
+"oběd, zůstaňte na večer s přáteli."
+
+#: api/templates/menu.html:14
+msgid ""
+"Choose by craving,<br> <span class=\"italic text-boong-crimson\">then stay "
+"for more.</span>"
+msgstr ""
+"Vyberte podle chuti,<br> <span class=\"italic text-boong-crimson\">a "
+"zůstaňte ještě chvíli.</span>"
+
+#: api/templates/menu.html:20
+msgid ""
+"Browse the clean web menu for speed, or open the visual menu when you want "
+"to eat with your eyes first."
+msgstr ""
+"Pro rychlý výběr použijte přehledné webové menu, nebo otevřete vizuální "
+"menu, když chcete nejdřív jíst očima."
+
+#: api/templates/menu.html:27 api/templates/menu.html:38
+msgid "Visual menu"
+msgstr "Vizuální menu"
+
+#: api/templates/menu.html:28
+msgid "Vietnamese favorites"
+msgstr "Vietnamské oblíbené"
+
+#: api/templates/menu.html:35
+msgid "Web menu"
+msgstr "Webové menu"
+
+#: api/templates/menu.html:79
+msgid "No menu items available."
+msgstr "Menu zatím neobsahuje žádné položky."
